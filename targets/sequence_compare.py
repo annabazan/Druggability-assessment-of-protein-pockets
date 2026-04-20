@@ -89,9 +89,9 @@ def process_alignment(pdb_seq, af_seq):
     print(f"Coverage: {coverage:.2f}")
 
     # Saving results
-    low_path = "aligment_results/low_identity"
-    med_path = "aligment_results/med_identity"
-    high_path = "aligment_results/high_identity"
+    low_path = "alignment_results/low_identity"
+    med_path = "alignment_results/med_identity"
+    high_path = "alignment_results/high_identity"
     os.makedirs(low_path, exist_ok=True)
     os.makedirs(med_path, exist_ok=True)
     os.makedirs(high_path, exist_ok=True)
