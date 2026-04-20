@@ -4,9 +4,9 @@ import requests
 from Bio.PDB import MMCIFParser, PDBIO
 
 df = pd.read_csv("targets_list.csv")
-pdb_ids = df["PDB ID"].dropna().unique()
+pdb_ids = df["PDB_ID"].dropna().unique()
 
-output_dir = "pdb_raw"
+output_dir = "pdb"
 os.makedirs(output_dir, exist_ok=True)
 
 parser = MMCIFParser(QUIET=True)

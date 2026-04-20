@@ -1,51 +1,51 @@
-NR,PDB ID,AF ID,CLASS
-1,4O75,O60885,transcription
-2,7DC8,P08887,immune system
-3,7JXI,P00533,"transferase, kinase"
-4,3OG7,P15056,"transferase, kinase"
-5,3PY0,P24941,transferase
-6,6SLG,P28482,transferase
-7,6KBR,P20155,hydrolase
-8,4AFX,Q9UK55,hydrolase
-9,7NEE,Q96IY4,hydrolase
-10,2RH1,P07550,"membrane protein, hydrolase"
-11,5E2M,P00915,lyase
-12,4G95,P00374,oxidoreductase
-13,6O69,P22303,hydrolase
-14,7E2H,Q96F81,lipid transport
-15,9CKF,Q9NRG4,transferase
-16,7JVV,Q9BY41,transferase
-17,7F7W,O60674,transferase
-18,7R9V,P42336,transferase
-19,1PBK,Q00688,isomerase
-20,4QGN,Q9BV57,oxidoreductase
-21,1FKJ,P62942,rotamase
-22,1PH0,P18031,hydrolase
-23,2CDZ,O96013,"transferase, kinase"
-24,1RV1,Q00987,ligase
-25,1O86,P12821,hydrolase
-26,1F0R,P00742,hydrolase
-27,1ERR,P03372,nuclear receptor
-28,1BUH,P61024,"transferase, kinase"
-29,2ACR,P15121,oxidoreductase
-30,1XOZ,O76074,hydrolase
-31,1TUB,Q09306,microtubules
-32,7PAE,O43924,"protein binding, PPI"
-33,1JDH,P35222,"transcription, PPI"
-34,6NJS,P40763,"transcription, PPI"
-35,8SWJ,Q12888,"transcription, PPI"
-36,2YY0,Q99417,"transcription, PPI"
-37,5LFN,O15335,cell adhesion
-38,6L81,Q08AG7,translation
-39,1I8H,Q13526,"membrane protein, isomerase"
-40,1NF7,P12268,oxidoreductase
-41,1YET,P07900,chaperone protein
-42,1NLJ,P43235,hydrolase
-43,1BMQ,P29466,hydrolase
-44,1KTS,P00734,hydrolase
-45,1BXL,Q07817,"complex (apoptosis/peptide)"
-46,1Z92,P60568,immune system
-47,1TNF,P01375,"lymphokine, PPI"
-48,1NKP,P01106,transcription/DNA
-49,2FLU,Q14145,"ligase, PPI"
-50,3KYS,P46937,transcription/protein binding
+NR,PDB_ID,AF_ID,START,END,CHAIN,CLASS
+1,4O75,O60885,44,168,-,transcription
+2,1N26,P08887,20,344,-,immune system
+3,7JXQ,P00533,695,1022,A,"transferase, kinase"
+4,3OG7,P15056,448,720,A,"transferase, kinase"
+5,3PY0,P24941,1,298,-,transferase
+6,6SLG,P28482,1,360,-,transferase
+7,6KBR,P20155,23,84,C,hydrolase
+8,4AFX,Q9UK55,23,444,-,hydrolase
+9,7NEE,Q96IY4,24,423,-,hydrolase
+10,2R4R,P07550,29,348,A,"membrane protein, hydrolase"
+11,5E2M,P00915,3,261,A,lyase
+12,4G95,P00374,2,187,-,oxidoreductase
+13,6O69,P22303,33,574,-,hydrolase
+14,6XE6,Q96F81,172,1249,-,lipid transport
+15,4WUY,Q9NRG4,1,433,-,transferase
+16,3MZ7,Q9BY41,1,377,-,transferase
+17,7F7W,O60674,536,810,A,transferase
+18,8EXL,P42336,7,1052,-,transferase
+19,5GPG,Q00688,109,224,A,isomerase
+20,4QGN,Q9BV57,1,179,-,oxidoreductase
+21,2PPN,P62942,2,108,-,rotamase
+22,1AAX,P18031,1,321,-,hydrolase
+23,2J0I,O96013,291,591,-,"transferase, kinase"
+24,1T4F,Q00987,17,125,-,ligase
+25,1O86,P12821,642,1230,-,hydrolase
+26,1F0R,P00742,235,488,A,hydrolase
+27,1ERR,P03372,301,553,A,nuclear recepror
+28,1BUH,P61024,1,79,B,"transferase, kinase"
+29,2ACR,P15121,2,316,-,oxidoreductase
+30,1XOZ,O76074,534,875,-,hydrolase
+31,7X4N,P02550,1,451,A,microtubules
+32,7PAD,O43924,2,150,-,"protein binding, PPI"
+33,1JDH,P35222,135,663,A,"transcription, PPI"
+34,6NJS,P40763,127,688,-,"transcription, PPI"
+35,8SWJ,Q12888,1483,1606,A,"transcription, PPI"
+36,2YY0,Q99417,42,94,A,"transcription, PPI"
+37,5MX1,O15335,23,359,A,cell adhesion
+38,6L81,Q08AG7,1,82,B,translation
+39,1F8A,Q13526,1,163,-,"membrane protein, isomerase"
+40,1NF7,P12268,1,514,A,oxidoreductase
+41,1YET,P07900,9,236,-,chaperone protein
+42,4X6H,P43235,115,329,-,hydrolase
+43,8WRA,P29466,120,404,-,hydrolase
+44,2BDY,P00734,334,622,-,hydrolase
+45,7JGW,Q07817,1,209,-,"complex (apoptosis/peptide)"
+46,7M2G,P60568,20,153,-,immune system
+47,2E7A,P01375,77,233,A,"lymphokine, PPI"
+48,1NKP,P01106,368,449,A,transcription/DNA
+49,2FLU,Q14145,321,609,-,"ligase, PPI"
+50,4RE1,P46937,50,171,C,transcription/protein binding

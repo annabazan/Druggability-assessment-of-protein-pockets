@@ -6,7 +6,7 @@ import requests
 df = pd.read_csv("targets_list.csv")
 
 # === 2. UniProt IDs ===
-af_ids = df["AF ID"].dropna().unique()
+af_ids = df["AF_ID"].dropna().unique()
 
 # === 3. Folder ===
 output_dir = "alpha_fold"
