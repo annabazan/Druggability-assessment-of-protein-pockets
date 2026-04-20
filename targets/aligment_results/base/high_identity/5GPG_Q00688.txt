@@ -1,0 +1,10 @@
+Alignment score: 572.00
+Identity: 1.00
+Coverage: 0.54
+target          108 PKYTKSVLKKGDKTNFPKKGDVVHCWYTGTLQDGTVFDTNIQTSAKKKKNAKPLSFKVGV
+                  0 ||||||||||||||||||||||||||||||||||||||||||-------|||||||||||
+query             1 PKYTKSVLKKGDKTNFPKKGDVVHCWYTGTLQDGTVFDTNIQ-------NAKPLSFKVGV
+
+target          168 GKVIRGWDEALLTMSKGEKARLEIEPEWAYGKKGQPDAKIPPNAKLTFEVELVDID 224
+                 60 |||||||||||||||||||||||||||||||||||||||||||||||||||||||| 116
+query            54 GKVIRGWDEALLTMSKGEKARLEIEPEWAYGKKGQPDAKIPPNAKLTFEVELVDID 110

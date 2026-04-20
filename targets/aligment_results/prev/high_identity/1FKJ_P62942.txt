@@ -1,0 +1,10 @@
+Alignment score: 568.00
+Identity: 1.00
+Coverage: 1.00
+target            1 GVQVETISPGDGRTFPKRGQTCVVHYTGMLEDGKKFDSSRDRNKPFKFMLGKQEVIRGWE
+                  0 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query             0 GVQVETISPGDGRTFPKRGQTCVVHYTGMLEDGKKFDSSRDRNKPFKFMLGKQEVIRGWE
+
+target           61 EGVAQMSVGQRAKLTISPDYAYGATGHPGIIPPHATLVFDVELLKLE 108
+                 60 ||||||||||||||||||||||||||||||||||||||||||||||| 107
+query            60 EGVAQMSVGQRAKLTISPDYAYGATGHPGIIPPHATLVFDVELLKLE 107

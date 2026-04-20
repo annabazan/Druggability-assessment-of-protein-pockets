@@ -1,0 +1,38 @@
+Alignment score: 2239.50
+Identity: 1.00
+Coverage: 1.00
+target            9 TSYVPDDGLTAQQLFNCGDGLTYNDFLILPGYIDFTADQVDLTSALTKKITLKTPLVSSP
+                  0 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query             0 TSYVPDDGLTAQQLFNCGDGLTYNDFLILPGYIDFTADQVDLTSALTKKITLKTPLVSSP
+
+target           69 MDTVTEAGMAIAMALTGGIGFIHHNCTPEFQANEVRKVKKYEQGFITDPVVLSPKDRVRD
+                 60 |||||||||||||||||||||||||||||||||||||||||||||||||||||||-----
+query            60 MDTVTEAGMAIAMALTGGIGFIHHNCTPEFQANEVRKVKKYEQGFITDPVVLSPK-----
+
+target          129 VFEAKARHGFCGIPITDTGRMGSRLVGIISSRDIDFLKEEEHDCFLEEIMTKREDLVVAP
+                120 --------------------------|||||||||||---||||||||||||||||||||
+query           115 --------------------------GIISSRDIDFL---EHDCFLEEIMTKREDLVVAP
+
+target          189 AGITLKEANEILQRSKKGKLPIVNEDDELVAIIARTDLKKNRDYPLASKDAKKQLLCGAA
+                180 ||||||||||||||||||||||||||||||||||||-|||||||||||||||||||||||
+query           146 AGITLKEANEILQRSKKGKLPIVNEDDELVAIIART-LKKNRDYPLASKDAKKQLLCGAA
+
+target          249 IGTHEDDKYRLDLLAQAGVDVVVLDSSQGNSIFQINMIKYIKDKYPNLQVIGGNVVTAAQ
+                240 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           205 IGTHEDDKYRLDLLAQAGVDVVVLDSSQGNSIFQINMIKYIKDKYPNLQVIGGNVVTAAQ
+
+target          309 AKNLIDAGVDALRVGMGSGSICITQEVLACGRPQATAVYKVSEYARRFGVPVIADGGIQN
+                300 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           265 AKNLIDAGVDALRVGMGSGSICITQEVLACGRPQATAVYKVSEYARRFGVPVIADGGIQN
+
+target          369 VGHIAKALALGASTVMMGSLLAATTEAPGEYFFSDGIRLKKYRGMGSLDAMDKHLSSQNR
+                360 |||||||||||||||||||||||||||||||||||||||||||||||||||---------
+query           325 VGHIAKALALGASTVMMGSLLAATTEAPGEYFFSDGIRLKKYRGMGSLDAM---------
+
+target          429 YFSEADKIKVAQGVSGAVQDKGSIHKFVPYLIAGIQHSCQDIGAKSLTQVRAMMYSGELK
+                420 -------|||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           376 -------IKVAQGVSGAVQDKGSIHKFVPYLIAGIQHSCQDIGAKSLTQVRAMMYSGELK
+
+target          489 FEKRTSSAQVEGGVHSLHSYEKRLF 514
+                480 ||||||||||||||||||||||||| 505
+query           429 FEKRTSSAQVEGGVHSLHSYEKRLF 454

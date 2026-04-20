@@ -1,0 +1,14 @@
+Alignment score: 646.00
+Identity: 0.98
+Coverage: 1.00
+target           22 TSSSTKKTQLQLEHLLLDLQMILNGINNYKNPKLTRMLTFKFYMPKKATELKHLQCLEEE
+                  0 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query             0 TSSSTKKTQLQLEHLLLDLQMILNGINNYKNPKLTRMLTFKFYMPKKATELKHLQCLEEE
+
+target           82 LKPLEEVLNLAQSKNFHLRPRDLISNINVIVLELKGSETTFMCEYADETATIVEFLNRWI
+                 60 ||.|||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query            60 LKKLEEVLNLAQSKNFHLRPRDLISNINVIVLELKGSETTFMCEYADETATIVEFLNRWI
+
+target          142 TFCQSIISTL 152
+                120 ||.||||||| 130
+query           120 TFSQSIISTL 130

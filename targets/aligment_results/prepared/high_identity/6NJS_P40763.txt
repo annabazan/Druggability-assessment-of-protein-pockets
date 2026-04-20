@@ -1,0 +1,42 @@
+Alignment score: 2681.00
+Identity: 1.00
+Coverage: 1.00
+target            9 VVTEKQQMLEQHLQDVRKRVQDLEQKMKVVENLQDDFDFNYKTLKSQGDMQDLNGNNQSV
+                  0 |||||||||||||||||||||||||||||||||||||||||||||-----------||||
+query             0 VVTEKQQMLEQHLQDVRKRVQDLEQKMKVVENLQDDFDFNYKTLK-----------NQSV
+
+target           69 TRQKMQQLEQMLTALDQMRRSIVSELAGLLSAMEYVQKTLTDEELADWKRRQQIACIGGP
+                 60 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query            49 TRQKMQQLEQMLTALDQMRRSIVSELAGLLSAMEYVQKTLTDEELADWKRRQQIACIGGP
+
+target          129 PNICLDRLENWITSLAESQLQTRQQIKKLEELQQKVSYKGDPIVQHRPMLEERIVELFRN
+                120 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           109 PNICLDRLENWITSLAESQLQTRQQIKKLEELQQKVSYKGDPIVQHRPMLEERIVELFRN
+
+target          189 LMKSAFVVERQPCMPMHPDRPLVIKTGVQFTTKVRLLVKFPELNYQLKIKVCIDKDSGDV
+                180 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||----
+query           169 LMKSAFVVERQPCMPMHPDRPLVIKTGVQFTTKVRLLVKFPELNYQLKIKVCIDKD----
+
+target          249 AALRGSRKFNILGTNTKVMNMEESNNGSLSAEFKHLTLREQRCGNGGRANCDASLIVTEE
+                240 ---||||||||||||||||||||||||||||||||||||||||-----------||||||
+query           225 ---RGSRKFNILGTNTKVMNMEESNNGSLSAEFKHLTLREQRC-----------LIVTEE
+
+target          309 LHLITFETEVYHQGLKIDLETHSLPVVVISNICQMPNAWASILWYNMLTNNPKNVNFFTK
+                300 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           271 LHLITFETEVYHQGLKIDLETHSLPVVVISNICQMPNAWASILWYNMLTNNPKNVNFFTK
+
+target          369 PPIGTWDQVAEVLSWQFSSTTKRGLSIEQLTTLAEKLLGPGVNYSGCQITWAKFCKENMA
+                360 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           331 PPIGTWDQVAEVLSWQFSSTTKRGLSIEQLTTLAEKLLGPGVNYSGCQITWAKFCKENMA
+
+target          429 GKGFSFWVWLDNIIDLVKKYILALWNEGYIMGFISKERERAILSTKPPGTFLLRFSESSK
+                420 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           391 GKGFSFWVWLDNIIDLVKKYILALWNEGYIMGFISKERERAILSTKPPGTFLLRFSESSK
+
+target          489 EGGVTFTWVEKDISGKTQIQSVEPYTKQQLNNMSFAEIIMGYKIMDATNILVSPLVYLYP
+                480 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           451 EGGVTFTWVEKDISGKTQIQSVEPYTKQQLNNMSFAEIIMGYKIMDATNILVSPLVYLYP
+
+target          549 DIPKEEAFGKYC 561
+                540 |||||||||||| 552
+query           511 DIPKEEAFGKYC 523

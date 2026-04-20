@@ -1,0 +1,26 @@
+Alignment score: 1589.00
+Identity: 0.95
+Coverage: 1.00
+target            0 EEETRELQSLAAAVVPSAQTLKITDFSFSDFELSDLETALCTIRMFTDLNLVQNFQMKHE
+                  0 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query             0 EEETRELQSLAAAVVPSAQTLKITDFSFSDFELSDLETALCTIRMFTDLNLVQNFQMKHE
+
+target           60 VLCRWILSVKKNYRKNVAYHNWRHAFNTAQCMFAALKAGKIQNKLTDLEILALLIAALSH
+                 60 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query            60 VLCRWILSVKKNYRKNVAYHNWRHAFNTAQCMFAALKAGKIQNKLTDLEILALLIAALSH
+
+target          120 DLDHRGVNNSYIQRSEHPLAQLY-CHSIMEHHHFDQCLMILNSPGNQILSGLSIEEYKTT
+                120 ||||.||.|.........||..|-..|..|||||||||||||||||||||||||||||||
+query           120 DLDHPGVSNQFLINTNSELALMYNDESVLEHHHFDQCLMILNSPGNQILSGLSIEEYKTT
+
+target          179 LKIIKQAILATDLALYIKRRGEFFELIRKNQFNLEDPHQKELFLAMLMTACDLSAITKPW
+                180 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           180 LKIIKQAILATDLALYIKRRGEFFELIRKNQFNLEDPHQKELFLAMLMTACDLSAITKPW
+
+target          239 PIQQRIAELVATEFFDQGDRERKELNIEPTDLMNREKKNKIPSMQVGFIDAICLQLYEAL
+                240 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           240 PIQQRIAELVATEFFDQGDRERKELNIEPTDLMNREKKNKIPSMQVGFIDAICLQLYEAL
+
+target          299 THVSEDCFPLLDGCRKNRQKWQALAE 325
+                300 |||||||||||||||||||||||||| 326
+query           300 THVSEDCFPLLDGCRKNRQKWQALAE 326

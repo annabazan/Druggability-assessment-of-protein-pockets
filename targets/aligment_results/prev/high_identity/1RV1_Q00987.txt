@@ -1,0 +1,10 @@
+Alignment score: 431.00
+Identity: 0.99
+Coverage: 0.33
+target           24 ETLVRPKPLLLKLLKSVGAQKDTYTMKEVLFYLGQYIMTKRLYDEKQQHIVYCSNDLLGD
+                  0 ||||||||.|||||||||||||||||||||||||||||||||||||||||||||||||||
+query             0 ETLVRPKPELLKLLKSVGAQKDTYTMKEVLFYLGQYIMTKRLYDEKQQHIVYCSNDLLGD
+
+target           84 LFGVPSFSVKEHRKIYTMIYRNLVV 109
+                 60 |||||||||||||||||||||||||  85
+query            60 LFGVPSFSVKEHRKIYTMIYRNLVV  85

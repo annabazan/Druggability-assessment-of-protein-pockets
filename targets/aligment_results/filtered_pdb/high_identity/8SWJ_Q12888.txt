@@ -1,0 +1,14 @@
+Alignment score: 633.00
+Identity: 1.00
+Coverage: 0.99
+target         1482 GNSFVGLRVVAKWSSNGYFYSGKITRDVGAGKYKLLFDDGYECDVLGKDILLCDPIPLDT
+                  0 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query             1 GNSFVGLRVVAKWSSNGYFYSGKITRDVGAGKYKLLFDDGYECDVLGKDILLCDPIPLDT
+
+target         1542 EVTALSEDEYFSAGVVKGHRKESGELYYSIEKEGQRKWYKRMAVILSLEQGNRLREQYGL
+                 60 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query            61 EVTALSEDEYFSAGVVKGHRKESGELYYSIEKEGQRKWYKRMAVILSLEQGNRLREQYGL
+
+target         1602 
+                120 
+query           121 

@@ -1,0 +1,38 @@
+Alignment score: 2531.50
+Identity: 1.00
+Coverage: 1.00
+target          134 AVVNLINYQDDAELATRAIPELTKLLNDEDQVVVNKAAVMVHQLSKKEASRHAIMRSPQM
+                  0 ||||||----------||||||||||||||||||||||||||||||||||||||||||||
+query             0 AVVNLI----------RAIPELTKLLNDEDQVVVNKAAVMVHQLSKKEASRHAIMRSPQM
+
+target          194 VSAIVRTMQNTNDVETARCTAGTLHNLSHHREGLLAIFKSGGIPALVKMLGSPVDSVLFY
+                 60 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query            50 VSAIVRTMQNTNDVETARCTAGTLHNLSHHREGLLAIFKSGGIPALVKMLGSPVDSVLFY
+
+target          254 AITTLHNLLLHQEGAKMAVRLAGGLQKMVALLNKTNVKFLAITTDCLQILAYGNQESKLI
+                120 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           110 AITTLHNLLLHQEGAKMAVRLAGGLQKMVALLNKTNVKFLAITTDCLQILAYGNQESKLI
+
+target          314 ILASGGPQALVNIMRTYTYEKLLWTTSRVLKVLSVCSSNKPAIVEAGGMQALGLHLTDPS
+                180 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           170 ILASGGPQALVNIMRTYTYEKLLWTTSRVLKVLSVCSSNKPAIVEAGGMQALGLHLTDPS
+
+target          374 QRLVQNCLWTLRNLSDAATKQEGMEGLLGTLVQLLGSDDINVVTCAAGILSNLTCNNYKN
+                240 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           230 QRLVQNCLWTLRNLSDAATKQEGMEGLLGTLVQLLGSDDINVVTCAAGILSNLTCNNYKN
+
+target          434 KMMVCQVGGIEALVRTVLRAGDREDITEPAICALRHLTSRHQEAEMAQNAVRLHYGLPVV
+                300 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           290 KMMVCQVGGIEALVRTVLRAGDREDITEPAICALRHLTSRHQEAEMAQNAVRLHYGLPVV
+
+target          494 VKLLHPPSHWPLIKATVGLIRNLALCPANHAPLREQGAIPRLVQLLVRAHQDTQRRTSMG
+                360 |||||||||||||||||||||||||||||||||||||||||||||||||||||-------
+query           350 VKLLHPPSHWPLIKATVGLIRNLALCPANHAPLREQGAIPRLVQLLVRAHQDT-------
+
+target          554 GTQQQFVEGVRMEEIVEGCTGALHILARDVHNRIVIRGLNTIPLFVQLLYSPIENIQRVA
+                420 ----||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           403 ----QFVEGVRMEEIVEGCTGALHILARDVHNRIVIRGLNTIPLFVQLLYSPIENIQRVA
+
+target          614 AGVLCELAQDKEAAEAIEAEGATAPLTELLHSRNEGVATYAAAVLFRMS 663
+                480 ||||||||||||||||||||||||||||||||||||||||||||||||| 529
+query           459 AGVLCELAQDKEAAEAIEAEGATAPLTELLHSRNEGVATYAAAVLFRMS 508

@@ -1,0 +1,10 @@
+Alignment score: 295.00
+Identity: 0.97
+Coverage: 0.21
+target           12 AAAANLNAVRETMDVLLEISRILNTGLDMETLSICVRLCEQGINPEALSSVIKELRKATE
+                  0 .|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query            95 SAAANLNAVRETMDVLLEISRILNTGLDMETLSICVRLCEQGINPEALSSVIKELRKATE
+
+target           72 ALK  75
+                 60 ||.  63
+query           155 ALQ 158

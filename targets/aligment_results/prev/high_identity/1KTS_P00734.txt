@@ -1,0 +1,22 @@
+Alignment score: 1492.50
+Identity: 1.00
+Coverage: 0.97
+target          332 EADCGLRPLFEKKSLEDKTERELLESYIDGRIVEGSDAEIGMSPWQVMLFRKSPQELLCG
+                  0 |||||||||||||||||||||||||||----|||||||||||||||||||||||||||||
+query             0 EADCGLRPLFEKKSLEDKTERELLESY----IVEGSDAEIGMSPWQVMLFRKSPQELLCG
+
+target          392 ASLISDRWVLTAAHCLLYPPWDKNFTENDLLVRIGKHSRTRYERNIEKISMLEKIYIHPR
+                 60 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query            56 ASLISDRWVLTAAHCLLYPPWDKNFTENDLLVRIGKHSRTRYERNIEKISMLEKIYIHPR
+
+target          452 YNWRENLDRDIALMKLKKPVAFSDYIHPVCLPDRETAASLLQAGYKGRVTGWGNLKETWT
+                120 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||--
+query           116 YNWRENLDRDIALMKLKKPVAFSDYIHPVCLPDRETAASLLQAGYKGRVTGWGNLKET--
+
+target          512 ANVGKGQPSVLQVVNLPIVERPVCKDSTRIRITDNMFCAGYKPDEGKRGDACEGDSGGPF
+                180 -----|||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           174 -----GQPSVLQVVNLPIVERPVCKDSTRIRITDNMFCAGYKPDEGKRGDACEGDSGGPF
+
+target          572 VMKSPFNNRWYQMGIVSWGEGCDRDGKYGFYTHVFRLKKWIQKVIDQFGE 622
+                240 |||||||||||||||||||||||||||||||||||||||||||||||||| 290
+query           229 VMKSPFNNRWYQMGIVSWGEGCDRDGKYGFYTHVFRLKKWIQKVIDQFGE 279

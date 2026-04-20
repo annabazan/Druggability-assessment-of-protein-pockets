@@ -1,0 +1,6 @@
+Alignment score: 246.00
+Identity: 0.81
+Coverage: 0.95
+target           10 TPNCSQYRLPGCPRHFNPVCGSDMSTYANECTLCMKIREGGHNIKIIRNGPC 62
+                  0 ||||..|...||.|...||||||||||||||||||||||||||||||.|||| 52
+query             0 TPNCRRYSIHGCNRMYAPVCGSDMSTYANECTLCMKIREGGHNIKIIKNGPC 52

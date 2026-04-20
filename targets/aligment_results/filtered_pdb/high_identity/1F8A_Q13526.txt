@@ -1,0 +1,14 @@
+Alignment score: 772.50
+Identity: 1.00
+Coverage: 0.94
+target            0 MADEEKLPPGWEKRMSRSSGRVYYFNHITNASQWERPSGNSSSGGKNGQGEPARVRCSHL
+                  0 ||||||||||||||||||||||||||||||||||||||------------||||||||||
+query             4 MADEEKLPPGWEKRMSRSSGRVYYFNHITNASQWERPS------------EPARVRCSHL
+
+target           60 LVKHSQSRRPSSWRQEKITRTKEEALELINGYIQKIKSGEEDFESLASQFSDCSSAKARG
+                 60 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query            52 LVKHSQSRRPSSWRQEKITRTKEEALELINGYIQKIKSGEEDFESLASQFSDCSSAKARG
+
+target          120 DLGAFSRGQMQKPFEDASFALRTGEMSGPVFTDSGIHIILRTE 163
+                120 ||||||||||||||||||||||||||||||||||||||||||| 163
+query           112 DLGAFSRGQMQKPFEDASFALRTGEMSGPVFTDSGIHIILRTE 155

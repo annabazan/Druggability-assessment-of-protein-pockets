@@ -1,0 +1,18 @@
+Alignment score: 1259.00
+Identity: 1.00
+Coverage: 1.00
+target            0 IVGGQECKDGECPWQALLINEENEGFCGGTILSEFYILTAAHCLYQAKRFKVRVGDRNTE
+                  0 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query             0 IVGGQECKDGECPWQALLINEENEGFCGGTILSEFYILTAAHCLYQAKRFKVRVGDRNTE
+
+target           60 QEEGGEAVHEVEVVIKHNRFTKETYDFDIAVLRLKTPITFRMNVAPACLPERDWAESTLM
+                 60 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query            60 QEEGGEAVHEVEVVIKHNRFTKETYDFDIAVLRLKTPITFRMNVAPACLPERDWAESTLM
+
+target          120 TQKTGIVSGFGRTHEKGRQSTRLKMLEVPYVDRNSCKLSSSFIITQNMFCAGYDTKQEDA
+                120 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           120 TQKTGIVSGFGRTHEKGRQSTRLKMLEVPYVDRNSCKLSSSFIITQNMFCAGYDTKQEDA
+
+target          180 CQGDSGGPHVTRFKDTYFVTGIVSWGEGCARKGKYGIYTKVTAFLKWIDRSMKT 234
+                180 |||||||||||||||||||||||||||||||||||||||||||||||||||||| 234
+query           180 CQGDSGGPHVTRFKDTYFVTGIVSWGEGCARKGKYGIYTKVTAFLKWIDRSMKT 234

@@ -1,0 +1,14 @@
+Alignment score: 241.50
+Identity: 0.68
+Coverage: 0.17
+target           49 AGHQIVHVRGDSETDLEALFNAVMNPKTANVPQTVPMRLRKLPDSFFKPPEPKSHSRQAS
+                  0 |||||||||||||||||||||||||||||||||||||.|||||.||.|||.---------
+query           408 AGHQIVHVRGDSETDLEALFNAVMNPKTANVPQTVPMCLRKLPASFCKPPQ---------
+
+target          109 TDAGTAGALTPQHVRAHSSPASLQLGAVSPGTLTPTGVVSGPAATPTAQHLRQSSFEIPD
+                 60 ----------..|||..|---...|.|.......|------------------.....|.
+query           459 ----------IVHVRGDS---ETDLEALFNAVMNP------------------KTANVPQ
+
+target          169 DVP-----LPAGW 177
+                120 .||-----|||.. 133
+query           488 TVPMCLRKLPASF 501

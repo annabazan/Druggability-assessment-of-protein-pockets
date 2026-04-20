@@ -1,0 +1,26 @@
+Alignment score: 1006.50
+Identity: 1.00
+Coverage: 1.00
+target            8 GIVMSLIVLAIVFGNVLVITAIAKFERLQTVTNYFITSLACADLVMGLAVVPFGAAHILM
+                  0 |||||||||||||||||||||||-||||||||||||||||||||||||||||||------
+query             0 GIVMSLIVLAIVFGNVLVITAIA-FERLQTVTNYFITSLACADLVMGLAVVPFG------
+
+target           68 KMWTFGNFWCEFWTSIDVLCVTASIETLCVIAVDRYFAITSPFKYQSLLTKNKARVIILM
+                 60 -----------|||||||||||||||||||||||||||||||||||||||||||||||||
+query            53 -----------FWTSIDVLCVTASIETLCVIAVDRYFAITSPFKYQSLLTKNKARVIILM
+
+target          128 VWIVSGLTSFLPIQMHWYRATHQEAINCYANETCCDFFTNQAYAIASSIVSFYVPLVIMV
+                120 ||||||||--------------------------------------||||||||||||||
+query           102 VWIVSGLT--------------------------------------SSIVSFYVPLVIMV
+
+target          188 FVYSRVFQEAKRQLQKIDKSEGRFHVQNLSQVEQDGRTGHGLRRSSKFCLKEHKALKTLG
+                180 ||||||||||||||||||||||||||---------------------|||||||||||||
+query           124 FVYSRVFQEAKRQLQKIDKSEGRFHV---------------------FCLKEHKALKTLG
+
+target          248 IIMGTFTLCWLPFFIVNIVHVIQDNLIRKEVYILLNWIGYVNSGFNPLIYCRSPDFRIAF
+                240 |||||||||||||||-------------------||||||||||||||||||||||||||
+query           163 IIMGTFTLCWLPFFI-------------------LNWIGYVNSGFNPLIYCRSPDFRIAF
+
+target          308 QELLCLRRSSLK 320
+                300 |||||||||||| 312
+query           204 QELLCLRRSSLK 216

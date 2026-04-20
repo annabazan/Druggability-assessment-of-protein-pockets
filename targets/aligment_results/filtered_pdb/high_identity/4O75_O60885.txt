@@ -1,0 +1,14 @@
+Alignment score: 689.00
+Identity: 0.99
+Coverage: 1.00
+target           41 STNPPPPETSNPNKPKRQTNQLQYLLRVVLKTLWKHQFAWPFQQPVDAVKLNLPDYYKII
+                  0 |.||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query             0 SMNPPPPETSNPNKPKRQTNQLQYLLRVVLKTLWKHQFAWPFQQPVDAVKLNLPDYYKII
+
+target          101 KTPMDMGTIKKRLENNYYWNAQECIQDFNTMFTNCYIYNKPGDDIVLMAEALEKLFLQKI
+                 60 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query            60 KTPMDMGTIKKRLENNYYWNAQECIQDFNTMFTNCYIYNKPGDDIVLMAEALEKLFLQKI
+
+target          161 NELPTEE 168
+                120 ||||||| 127
+query           120 NELPTEE 127

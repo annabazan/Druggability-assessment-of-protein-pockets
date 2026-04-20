@@ -1,0 +1,415 @@
+0: 4O75 - O60885
+PDB sequence length: 127
+AF sequence length: 1362
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 689.00
+Identity: 0.99
+Coverage: 1.00
+1: 7DC8 - P08887
+PDB sequence length: 1212
+AF sequence length: 468
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 1041.50
+Identity: 0.67
+Coverage: 0.31
+2: 7JXI - P00533
+PDB sequence length: 1136
+AF sequence length: 1210
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 1509.50
+Identity: 0.70
+Coverage: 0.43
+3: 3OG7 - P15056
+PDB sequence length: 501
+AF sequence length: 766
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 1217.00
+Identity: 0.86
+Coverage: 0.58
+4: 3PY0 - P24941
+PDB sequence length: 294
+AF sequence length: 298
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 1527.50
+Identity: 1.00
+Coverage: 1.00
+5: 6SLG - P28482
+PDB sequence length: 337
+AF sequence length: 360
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 1751.00
+Identity: 1.00
+Coverage: 0.99
+6: 6KBR - P20155
+PDB sequence length: 278
+AF sequence length: 84
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 246.00
+Identity: 0.81
+Coverage: 0.19
+7: 4AFX - Q9UK55
+PDB sequence length: 381
+AF sequence length: 444
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 1961.00
+Identity: 1.00
+Coverage: 1.00
+8: 7NEE - Q96IY4
+PDB sequence length: 400
+AF sequence length: 423
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 2108.00
+Identity: 0.99
+Coverage: 1.00
+9: 2RH1 - P07550
+PDB sequence length: 442
+AF sequence length: 413
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 1424.00
+Identity: 0.94
+Coverage: 0.71
+10: 5E2M - P00915
+PDB sequence length: 513
+AF sequence length: 261
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 1374.00
+Identity: 1.00
+Coverage: 0.51
+11: 4G95 - P00374
+PDB sequence length: 186
+AF sequence length: 187
+PDB sequence is a subsequence of AF sequence.
+Alignment score: 979.00
+Identity: 1.00
+Coverage: 1.00
+12: 6O69 - P22303
+PDB sequence length: 531
+AF sequence length: 614
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 2811.50
+Identity: 1.00
+Coverage: 1.00
+13: 7E2H - Q96F81
+PDB sequence length: 907
+AF sequence length: 1524
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 4703.50
+Identity: 0.99
+Coverage: 1.00
+14: 9CKF - Q9NRG4
+PDB sequence length: 859
+AF sequence length: 433
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 2284.00
+Identity: 1.00
+Coverage: 0.50
+15: 7JVV - Q9BY41
+PDB sequence length: 728
+AF sequence length: 377
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 1936.00
+Identity: 0.99
+Coverage: 0.50
+16: 7F7W - O60674
+PDB sequence length: 550
+AF sequence length: 1132
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 1674.50
+Identity: 0.66
+Coverage: 0.96
+17: 7R9V - P42336
+PDB sequence length: 855
+AF sequence length: 1068
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 4468.50
+Identity: 1.00
+Coverage: 1.00
+18: 1PBK - Q00688
+PDB sequence length: 116
+AF sequence length: 224
+PDB sequence is a subsequence of AF sequence.
+Alignment score: 618.00
+Identity: 1.00
+Coverage: 1.00
+19: 4QGN - Q9BV57
+PDB sequence length: 178
+AF sequence length: 179
+PDB sequence is a subsequence of AF sequence.
+Alignment score: 982.00
+Identity: 1.00
+Coverage: 1.00
+20: 1FKJ - P62942
+PDB sequence length: 107
+AF sequence length: 108
+PDB sequence is a subsequence of AF sequence.
+Alignment score: 568.00
+Identity: 1.00
+Coverage: 1.00
+21: 1PH0 - P18031
+PDB sequence length: 283
+AF sequence length: 435
+PDB sequence is a subsequence of AF sequence.
+Alignment score: 1498.00
+Identity: 1.00
+Coverage: 1.00
+22: 2CDZ - O96013
+PDB sequence length: 289
+AF sequence length: 591
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 1468.50
+Identity: 1.00
+Coverage: 1.00
+23: 1RV1 - Q00987
+PDB sequence length: 255
+AF sequence length: 491
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 431.00
+Identity: 0.99
+Coverage: 0.33
+24: 1O86 - P12821
+PDB sequence length: 575
+AF sequence length: 1306
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 3096.50
+Identity: 1.00
+Coverage: 1.00
+25: 1F0R - P00742
+PDB sequence length: 285
+AF sequence length: 488
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 1259.00
+Identity: 1.00
+Coverage: 0.82
+26: 1ERR - P03372
+PDB sequence length: 446
+AF sequence length: 595
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 1114.00
+Identity: 1.00
+Coverage: 0.50
+27: 1BUH - P61024
+PDB sequence length: 357
+AF sequence length: 79
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 388.00
+Identity: 1.00
+Coverage: 0.20
+28: 2ACR - P15121
+PDB sequence length: 315
+AF sequence length: 316
+PDB sequence is a subsequence of AF sequence.
+Alignment score: 1672.00
+Identity: 1.00
+Coverage: 1.00
+29: 1XOZ - O76074
+PDB sequence length: 326
+AF sequence length: 875
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 1589.00
+Identity: 0.95
+Coverage: 1.00
+30: 1TUB - Q09306
+PDB sequence length: 867
+AF sequence length: 426
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 45.50
+Identity: 0.34
+Coverage: 0.21
+31: 7PAE - O43924
+PDB sequence length: 149
+AF sequence length: 150
+PDB sequence is a subsequence of AF sequence.
+Alignment score: 773.00
+Identity: 1.00
+Coverage: 1.00
+32: 1JDH - P35222
+PDB sequence length: 546
+AF sequence length: 781
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 2531.50
+Identity: 1.00
+Coverage: 0.93
+33: 6NJS - P40763
+PDB sequence length: 523
+AF sequence length: 770
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 2681.00
+Identity: 1.00
+Coverage: 1.00
+34: 8SWJ - Q12888
+PDB sequence length: 494
+AF sequence length: 1972
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 661.50
+Identity: 0.96
+Coverage: 0.27
+35: 2YY0 - Q99417
+PDB sequence length: 181
+AF sequence length: 103
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 278.00
+Identity: 0.76
+Coverage: 0.46
+36: 5LFN - O15335
+PDB sequence length: 1296
+AF sequence length: 359
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 1714.00
+Identity: 0.99
+Coverage: 0.25
+37: 6L81 - Q08AG7
+PDB sequence length: 305
+AF sequence length: 82
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 295.00
+Identity: 0.97
+Coverage: 0.21
+38: 1I8H - Q13526
+PDB sequence length: 510
+AF sequence length: 163
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 225.00
+Identity: 0.70
+Coverage: 0.13
+39: 1NF7 - P12268
+PDB sequence length: 908
+AF sequence length: 514
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 2239.50
+Identity: 1.00
+Coverage: 0.50
+40: 1YET - P07900
+PDB sequence length: 213
+AF sequence length: 732
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 1072.00
+Identity: 1.00
+Coverage: 1.00
+41: 1NLJ - P43235
+PDB sequence length: 430
+AF sequence length: 329
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 1167.00
+Identity: 1.00
+Coverage: 0.50
+42: 1BMQ - P29466
+PDB sequence length: 255
+AF sequence length: 404
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 1332.00
+Identity: 1.00
+Coverage: 1.00
+43: 1KTS - P00734
+PDB sequence length: 288
+AF sequence length: 622
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 1492.50
+Identity: 1.00
+Coverage: 0.97
+44: 1BXL - Q07817
+PDB sequence length: 197
+AF sequence length: 233
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 852.50
+Identity: 1.00
+Coverage: 0.86
+45: 1Z92 - P60568
+PDB sequence length: 244
+AF sequence length: 153
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 605.00
+Identity: 1.00
+Coverage: 0.50
+46: 1TNF - P01375
+PDB sequence length: 456
+AF sequence length: 233
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 779.00
+Identity: 0.99
+Coverage: 0.33
+47: 1NKP - P01106
+PDB sequence length: 335
+AF sequence length: 454
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 444.50
+Identity: 0.58
+Coverage: 0.57
+48: 2FLU - Q14145
+PDB sequence length: 301
+AF sequence length: 624
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 1560.00
+Identity: 0.97
+Coverage: 0.98
+49: 3KYS - P46937
+PDB sequence length: 516
+AF sequence length: 504
+PDB sequence is NOT a subsequence of AF sequence.
+Alignment score: 273.00
+Identity: 0.43
+Coverage: 0.48
+
+ **************************************************
+Total PDB sequences that are subsequences of AF sequences: 7 out of 50
+Average identity: 0.92
+Full identities: 22
+Average coverage: 0.71
+
+ **************************************************
+Identities under 0.8 (LOW): 8
+1TUB - Q09306: 0.34
+3KYS - P46937: 0.43
+1NKP - P01106: 0.58
+7F7W - O60674: 0.66
+7DC8 - P08887: 0.67
+7JXI - P00533: 0.70
+1I8H - Q13526: 0.70
+2YY0 - Q99417: 0.76
+
+ **************************************************
+Identities between 0.8 and 0.95 (MEDIUM): 4
+6KBR - P20155: 0.81
+3OG7 - P15056: 0.86
+2RH1 - P07550: 0.94
+1XOZ - O76074: 0.95
+
+ **************************************************
+Identities above 0.95 (HIGH): 38
+8SWJ - Q12888: 0.96
+6L81 - Q08AG7: 0.97
+2FLU - Q14145: 0.97
+1RV1 - Q00987: 0.99
+7NEE - Q96IY4: 0.99
+5LFN - O15335: 0.99
+4O75 - O60885: 0.99
+7E2H - Q96F81: 0.99
+1TNF - P01375: 0.99
+7JVV - Q9BY41: 0.99
+1YET - P07900: 1.00
+9CKF - Q9NRG4: 1.00
+5E2M - P00915: 1.00
+6O69 - P22303: 1.00
+6SLG - P28482: 1.00
+4AFX - Q9UK55: 1.00
+3PY0 - P24941: 1.00
+4G95 - P00374: 1.00
+7R9V - P42336: 1.00
+1PBK - Q00688: 1.00
+4QGN - Q9BV57: 1.00
+1FKJ - P62942: 1.00
+1PH0 - P18031: 1.00
+2CDZ - O96013: 1.00
+1O86 - P12821: 1.00
+1F0R - P00742: 1.00
+1ERR - P03372: 1.00
+1BUH - P61024: 1.00
+2ACR - P15121: 1.00
+7PAE - O43924: 1.00
+1JDH - P35222: 1.00
+6NJS - P40763: 1.00
+1NF7 - P12268: 1.00
+1NLJ - P43235: 1.00
+1BMQ - P29466: 1.00
+1KTS - P00734: 1.00
+1BXL - Q07817: 1.00
+1Z92 - P60568: 1.00

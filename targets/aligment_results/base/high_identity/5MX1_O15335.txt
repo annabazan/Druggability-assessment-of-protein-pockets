@@ -1,0 +1,26 @@
+Alignment score: 1722.00
+Identity: 1.00
+Coverage: 0.50
+target           19 LAACPQNCHCHSDLQHVICDKVGLQKIPKVSEKTKLLNLQRNNFPVLAANSFRAMPNLVS
+                  0 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query             0 LAACPQNCHCHSDLQHVICDKVGLQKIPKVSEKTKLLNLQRNNFPVLAANSFRAMPNLVS
+
+target           79 LHLQHCQIREVAAGAFRGLKQLIYLYLSHNDIRVLRAGAFDDLTELTYLYLDHNKVTELP
+                 60 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query            60 LHLQHCQIREVAAGAFRGLKQLIYLYLSHNDIRVLRAGAFDDLTELTYLYLDHNKVTELP
+
+target          139 RGLLSPLVNLFILQLNNNKIRELRAGAFQGAKDLRWLYLSENALSSLQPGALDDVENLAK
+                120 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           120 RGLLSPLVNLFILQLNNNKIRELRAGAFQGAKDLRWLYLSENALSSLQPGALDDVENLAK
+
+target          199 FHVDRNQLSSYPSAALSKLRVVEELKLSHNPLKSIPDNAFQSFGRYLETLWLDNTNLEKF
+                180 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           180 FHVDRNQLSSYPSAALSKLRVVEELKLSHNPLKSIPDNAFQSFGRYLETLWLDNTNLEKF
+
+target          259 SDGAFLGVTTLKHVHLENNRLNQLPSNFPFDSLETLALTNNPWKCTCQLRGLRRWLEAKA
+                240 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           240 SDGAFLGVTTLKHVHLENNRLNQLPSNFPFDSLETLALTNNPWKCTCQLRGLRRWLEAKA
+
+target          319 SRPDATCASPAKFKGQHIRDTDAFRSCK 347
+                300 |||||||||||||||||||||||||||| 328
+query           300 SRPDATCASPAKFKGQHIRDTDAFRSCK 328

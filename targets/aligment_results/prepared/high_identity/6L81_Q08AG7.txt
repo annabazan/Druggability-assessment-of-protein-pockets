@@ -1,0 +1,10 @@
+Alignment score: 293.00
+Identity: 1.00
+Coverage: 1.00
+target           13 AAANLNAVRETMDVLLEISRILNTGLDMETLSICVRLCEQGINPEALSSVIKELRKATEA
+                  0 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query             0 AAANLNAVRETMDVLLEISRILNTGLDMETLSICVRLCEQGINPEALSSVIKELRKATEA
+
+target           73 L 74
+                 60 | 61
+query            60 L 61

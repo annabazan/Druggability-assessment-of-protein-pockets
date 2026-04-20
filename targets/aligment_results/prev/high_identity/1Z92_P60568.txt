@@ -1,0 +1,14 @@
+Alignment score: 605.00
+Identity: 1.00
+Coverage: 0.50
+target           25 STKKTQLQLEHLLLDLQMILNGINNYKNPKLTRMLTFKFYMPKKATELKHLQCLEEELKP
+                  0 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query             0 STKKTQLQLEHLLLDLQMILNGINNYKNPKLTRMLTFKFYMPKKATELKHLQCLEEELKP
+
+target           85 LEEVLNLAQSKNFHLRPRDLISNINVIVLELKGSETTFMCEYADETATIVEFLNRWITFC
+                 60 ||||||||-------|||||||||||||||||||||||||||||||||||||||||||||
+query            60 LEEVLNLA-------RPRDLISNINVIVLELKGSETTFMCEYADETATIVEFLNRWITFC
+
+target          145 QSIISTLT 153
+                120 |||||||| 128
+query           113 QSIISTLT 121

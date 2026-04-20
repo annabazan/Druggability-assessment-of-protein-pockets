@@ -1,0 +1,26 @@
+Alignment score: 273.00
+Identity: 0.43
+Coverage: 0.48
+target           50 GHQIVHVRGDSETDLEALFNAVMNPKTANVPQTVPMRLRKLPDSFFKPPE----------
+                  0 ||||||||||||||||||||||||||||||||||||||||||||||||||----------
+query           207 GHQIVHVRGDSETDLEALFNAVMNPKTANVPQTVPMRLRKLPDSFFKPPERSIGTTKLRL
+
+target          100 ------------PKSHSRQASTDAGTAGALTPQHVRAHSSPASLQLGAVSPGTLTPTGVV
+                 60 ------------|.|...---------------|...|...|.|.---------------
+query           267 VEFSAFLEQQRDPDSYNK---------------HLFVHIGHALLE---------------
+
+target          148 SGPAATPTAQHLRQSSFEIPDDVPLPAGW--EMAKTSSGQRYFLNHI--DQTTTWQDPRK
+                120 --------....||----|.|..|...|.--|..........||...--|.....||...
+query           297 --------SVDIRQ----IYDKFPEKKGGLKELFGKGPQNAFFLVKFWADLNCNIQDDAG
+
+target          204 AML-------SQMNVTAPTSPPV---QQNMMNSASGPLPDGWEQAMTQDGE-IYYIN---
+                180 |..-------|..|.|...|..|---.........------.|.|....|.-.|.||---
+query           345 AFYGVTSQYESSENMTVTCSTKVCSFGKQVVEKVE------TEYARFENGRFVYRINRSP
+
+target          250 --------HKNKTTSWLDPRLDPRFAMNQRISQSAPVKQPPPLAPQSP---QGGVMGGSN
+                240 --------||.|-------.|.....||.................|..---...|...||
+query           399 MEYMINFIHKLK-------HLPEKYMMNSVLENFTILLVVTNRDTQETLLCMACVFEVSN
+
+target          299 SNQQQQMRLQQLQMEKERLRLK-QQELLRQAMRN--INPSTANSPKCQELALRSQLP 353
+                300 |....|.....|..........-..|....|..|--.||.|||.|......||-.|| 357
+query           452 SEHGAQHHIYRLVKDHQIVHVRGDSETDLEALFNAVMNPKTANVPQTVPMRLR-KLP 508

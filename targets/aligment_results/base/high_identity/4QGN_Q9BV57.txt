@@ -1,0 +1,18 @@
+Alignment score: 982.00
+Identity: 1.00
+Coverage: 1.00
+target            0 MVQAWYMDDAPGDPRQPHRPDPGRPVGLEQLRRLGVLYWKLDADKYENDPELEKIRRERN
+                  0 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query             0 MVQAWYMDDAPGDPRQPHRPDPGRPVGLEQLRRLGVLYWKLDADKYENDPELEKIRRERN
+
+target           60 YSWMDIITICKDKLPNYEEKIKMFYEEHLHLDDEIRYILDGSGYFDVRDKEDQWIRIFME
+                 60 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query            60 YSWMDIITICKDKLPNYEEKIKMFYEEHLHLDDEIRYILDGSGYFDVRDKEDQWIRIFME
+
+target          120 KGDMVTLPAGIYHRFTVDEKNYTKAMRLFVGEPVWTAYNRPADHFEARGQYVKFLAQT
+                120 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           120 KGDMVTLPAGIYHRFTVDEKNYTKAMRLFVGEPVWTAYNRPADHFEARGQYVKFLAQT
+
+target          178
+                178
+query           178

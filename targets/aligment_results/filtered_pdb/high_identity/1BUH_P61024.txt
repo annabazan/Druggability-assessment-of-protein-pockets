@@ -1,0 +1,10 @@
+Alignment score: 388.00
+Identity: 1.00
+Coverage: 1.00
+target            4 QIYYSDKYDDEEFEYRHVMLPKDIAKLVPKTHLMSESEWRNLGVQQSQGWVHYMIHEPEP
+                  0 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query             0 QIYYSDKYDDEEFEYRHVMLPKDIAKLVPKTHLMSESEWRNLGVQQSQGWVHYMIHEPEP
+
+target           64 HILLFRRPLP 74
+                 60 |||||||||| 70
+query            60 HILLFRRPLP 70

@@ -1,0 +1,14 @@
+Alignment score: 722.00
+Identity: 0.92
+Coverage: 0.34
+target           83 PSDKPVAHVVANPQAEGQLQWLNRRANALLANGVELRDNQLVVPSEGLYLIYSQVLFKGQ
+                  0 |||.|||||||||||||||||||||||||||||||||||||||||||||||||||||.||
+query             0 PSDMPVAHVVANPQAEGQLQWLNRRANALLANGVELRDNQLVVPSEGLYLIYSQVLFSGQ
+
+target          143 GCPSTHVLLTHTISRIAVSYQTKVNLLSAIKSPCQRETPEGAEAKPWYEPIYLGGVFQLE
+                 60 ||||||||||||||||.......|||||||.|||||||||||||.|||||||||||||||
+query            60 GCPSTHVLLTHTISRISTTHNQPVNLLSAIRSPCQRETPEGAEANPWYEPIYLGGVFQLE
+
+target          203 KGDRLSAEINRPDYLDFAESGQVYFGIIAL 233
+                120 .||||||||||||||||||||||||||||| 150
+query           120 PGDRLSAEINRPDYLDFAESGQVYFGIIAL 150

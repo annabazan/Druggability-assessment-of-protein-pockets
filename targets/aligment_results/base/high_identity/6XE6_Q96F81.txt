@@ -1,0 +1,70 @@
+Alignment score: 4210.00
+Identity: 1.00
+Coverage: 1.00
+target          178 KSYAALIADWPVVVLGMCTMFIVVCALVGVLVPELPDFSDPLLGFEPRGTAIGQRLVTWN
+                  0 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query             0 KSYAALIADWPVVVLGMCTMFIVVCALVGVLVPELPDFSDPLLGFEPRGTAIGQRLVTWN
+
+target          238 NMVKNTGYKATLANYPFKYADEQAKSHRDDRWSDDHYEREKREVDWNFHKDSFFCDVPSD
+                 60 ||||||||||||||------------------------------------------||||
+query            60 NMVKNTGYKATLAN------------------------------------------VPSD
+
+target          298 RYSRVVFTSSGGETLWNLPAIKSMCNVDNSRIRSHPQFGDLCQRTTAASCCPSWTLGNYI
+                120 |||||||-------||||||||||||||||||||||||||---------|||||||||||
+query            78 RYSRVVF-------LWNLPAIKSMCNVDNSRIRSHPQFGD---------CCPSWTLGNYI
+
+target          358 AILNNRSSCQKIVERDVSHTLKLLRTCAKHYQNGTLGPDCWDMAARRKDQLKCTNVPRKC
+                180 |||||||||||||||||||||||||||||||-------------------------||||
+query           122 AILNNRSSCQKIVERDVSHTLKLLRTCAKHY-------------------------PRKC
+
+target          418 TKYNAVYQILHYLVDKDFMTPKTADYATPALKYSMLFSPTEKGESMMNIYLDNFENWNSS
+                240 ||||||||||||||||||||||-----|||||||||||||||||||||||||||||||--
+query           157 TKYNAVYQILHYLVDKDFMTPK-----TPALKYSMLFSPTEKGESMMNIYLDNFENWN--
+
+target          478 DGVTTITGIEFGIKHSLFQDYLLMDTVYPAIAIVIVLLVMCVYTKSMFITLMTMFAIISS
+                300 ------||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           210 ------TGIEFGIKHSLFQDYLLMDTVYPAIAIVIVLLVMCVYTKSMFITLMTMFAIISS
+
+target          538 LIVSYFLYRVVFHFEFFPFMNLTALIILVGIGADDAFVLCDVWNYTKFDKPHAETSETVS
+                360 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           264 LIVSYFLYRVVFHFEFFPFMNLTALIILVGIGADDAFVLCDVWNYTKFDKPHAETSETVS
+
+target          598 ITLQHAALSMFVTSFTTAAAFYANYVSNITAIRCFGVYAGTAILVNYVLMVTWLPAVVVL
+                420 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           324 ITLQHAALSMFVTSFTTAAAFYANYVSNITAIRCFGVYAGTAILVNYVLMVTWLPAVVVL
+
+target          658 HERYLLNIFTCFKKPQQQIYDNKSCWTVACQKCHKVLFAISEASRIFFEKVLPCIVIKFR
+                480 ||||-------------------------|||||||||||||||||||||||||||||||
+query           384 HERY-------------------------CQKCHKVLFAISEASRIFFEKVLPCIVIKFR
+
+target          718 YLWLFWFLALTVGGAYIVCINPKMKLPSLELSEFQVFRSSHPFERYDAEYKKLFMFERVH
+                540 ||||||||||||||||||||||||||||||||||||||||||||||||||||-------|
+query           419 YLWLFWFLALTVGGAYIVCINPKMKLPSLELSEFQVFRSSHPFERYDAEYKK-------H
+
+target          778 HGEELHMPITVIWGVSPEDNGNPLNPKSKGKLTLDSSFNIASPASQAWILHFCQKLRNQT
+                600 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           472 HGEELHMPITVIWGVSPEDNGNPLNPKSKGKLTLDSSFNIASPASQAWILHFCQKLRNQT
+
+target          838 FFYQTDEQDFTSCFIETFKQWMENQDCDEPALYPCCSHWSFPYKQEIFELCIKRAIMELE
+                660 |||||||||||||||||||||||||||------|||||||||||||||||||||||||--
+query           532 FFYQTDEQDFTSCFIETFKQWMENQDC------PCCSHWSFPYKQEIFELCIKRAIME--
+
+target          898 RSTGYHLDSKTPGPRFDINDTIRAVVLEFQSTYLFTLAYEKMHQFYKEVDSWISSELSSA
+                720 ----||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           584 ----YHLDSKTPGPRFDINDTIRAVVLEFQSTYLFTLAYEKMHQFYKEVDSWISSELSSA
+
+target          958 PEGLSNGWFVSNLEFYDLQDSLSDGTLIAMGLSVAVAFSVMLLTTWNIIISLYAIISIAG
+                780 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           640 PEGLSNGWFVSNLEFYDLQDSLSDGTLIAMGLSVAVAFSVMLLTTWNIIISLYAIISIAG
+
+target         1018 TIFVTVGSLVLLGWELNVLESVTISVAVGLSVDFAVHYGVAYRLAPDPDREGKVIFSLSR
+                840 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           700 TIFVTVGSLVLLGWELNVLESVTISVAVGLSVDFAVHYGVAYRLAPDPDREGKVIFSLSR
+
+target         1078 VGSAMAMAALTTFVAGAMMMPSTVLAYTQLGTFMMLIMCISWAFATFFFQCMCRCLGPQG
+                900 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           760 VGSAMAMAALTTFVAGAMMMPSTVLAYTQLGTFMMLIMCISWAFATFFFQCMCRCLGPQG
+
+target         1138 TCGQIP 1144
+                960 ||||||  966
+query           820 TCGQIP  826

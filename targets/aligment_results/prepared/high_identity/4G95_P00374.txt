@@ -1,0 +1,18 @@
+Alignment score: 979.00
+Identity: 1.00
+Coverage: 1.00
+target            0 VGSLNCIVAVSQNMGIGKNGDLPWPPLRNEFRYFQRMTTTSSVEGKQNLVIMGKKTWFSI
+                  0 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query             0 VGSLNCIVAVSQNMGIGKNGDLPWPPLRNEFRYFQRMTTTSSVEGKQNLVIMGKKTWFSI
+
+target           60 PEKNRPLKGRINLVLSRELKEPPQGAHFLSRSLDDALKLTEQPELANKVDMVWIVGGSSV
+                 60 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query            60 PEKNRPLKGRINLVLSRELKEPPQGAHFLSRSLDDALKLTEQPELANKVDMVWIVGGSSV
+
+target          120 YKEAMNHPGHLKLFVTRIMQDFESDTFFPEIDLEKYKLLPEYPGVLSDVQEEKGIKYKFE
+                120 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           120 YKEAMNHPGHLKLFVTRIMQDFESDTFFPEIDLEKYKLLPEYPGVLSDVQEEKGIKYKFE
+
+target          180 VYEKND 186
+                180 |||||| 186
+query           180 VYEKND 186

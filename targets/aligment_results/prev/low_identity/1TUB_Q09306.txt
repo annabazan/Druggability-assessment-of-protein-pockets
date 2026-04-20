@@ -1,0 +1,22 @@
+Alignment score: 45.50
+Identity: 0.34
+Coverage: 0.21
+target          110 NDINAKLSKVNLTSCVVSDDEDEDKRS--YADSPWNTDVVADRI-------------PSE
+                  0 |.|.||...------|.||....|...--..||----|....||-------------|..
+query           453 NQIGAKFWE------VISDEHGIDPTGSYHGDS----DLQLERINVYYNEAAGNKYVPRA
+
+target          155 VLPDY--------------------NFI------KNNLAK--FVE-----DPAVE-----
+                 60 .|.|.--------------------||.------.||.||--..|-----|....-----
+query           503 ILVDLEPGTMDSVRSGPFGQIFRPDNFVFGQSGAGNNWAKGHYTEGAELVDSVLDVVRKE
+
+target          177 ----HCLYKCSITRQ-KSGVDKGMFPTYFLHLEEFDTDKRQKIFLLAARKRKKSTTA---
+                120 ----.||.....|..-..|...||.........|...|.....|..........|..---
+query           563 SESCDCLQGFQLTHSLGGGTGSGMGTLLISKIREEYPDRIMNTFSVVPSPKVSDTVVEPY
+
+target          229 NYLLSTDPTNLSREGEGYCAKVRSNALGTQFTVYDSGQNPKKTT-------NHAAIRQEL
+                180 |..||....-.....|.||--....||------||......|.|-------||-......
+query           623 NATLSVHQL-VENTDETYC--IDNEAL------YDICFRTLKLTTPTYGDLNH-LVSATM
+
+target          282 AAVIYETNVLGFKGP-----RKMTI----------VMPGIEPPT 311
+                240 ..|---|..|.|.|.-----||...----------.|||..|.| 284
+query           673 SGV---TTCLRFPGQLNADLRKLAVNMVPFPRLHFFMPGFAPLT 714

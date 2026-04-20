@@ -1,0 +1,10 @@
+Alignment score: 402.00
+Identity: 1.00
+Coverage: 0.93
+target            0 NVKRRTHNVLERQRRNELKRSFFALRDQIPELENNEKAPKVVILKKATAYILSVQAEEQK
+                  0 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query             3 NVKRRTHNVLERQRRNELKRSFFALRDQIPELENNEKAPKVVILKKATAYILSVQAEEQK
+
+target           60 LISEEDLLRKRREQLKHKLEQL 82
+                 60 |||||||||||||||||||||| 82
+query            63 LISEEDLLRKRREQLKHKLEQL 85

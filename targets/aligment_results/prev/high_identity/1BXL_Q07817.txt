@@ -1,0 +1,18 @@
+Alignment score: 852.50
+Identity: 1.00
+Coverage: 0.86
+target            0 MSQSNRELVVDFLSYKLSQKGYSWSQFSDVEENRTEAPEGTESEMETPSAINGNPSWHLA
+                  0 ||||||||||||||||||||||||||||||||||||||||||||----------------
+query             4 MSQSNRELVVDFLSYKLSQKGYSWSQFSDVEENRTEAPEGTESE----------------
+
+target           60 DSPAVNGATGHSSSLDAREVIPMAAVKQALREAGDEFELRYRRAFSDLTSQLHITPGTAY
+                 60 ------------------------||||||||||||||||||||||||||||||||||||
+query            48 ------------------------AVKQALREAGDEFELRYRRAFSDLTSQLHITPGTAY
+
+target          120 QSFEQVVNELFRDGVNWGRIVAFFSFGGALCVESVDKEMQVLVSRIAAWMATYLNDHLEP
+                120 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query            84 QSFEQVVNELFRDGVNWGRIVAFFSFGGALCVESVDKEMQVLVSRIAAWMATYLNDHLEP
+
+target          180 WIQENGGWDTFVELYGNNAAAESRKGQER 209
+                180 ||||||||||||||||||||||||||||| 209
+query           144 WIQENGGWDTFVELYGNNAAAESRKGQER 173

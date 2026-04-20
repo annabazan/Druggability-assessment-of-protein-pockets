@@ -1,0 +1,34 @@
+Alignment score: 2297.50
+Identity: 1.00
+Coverage: 1.00
+target            0 MRECISIHVGQAGVQIGNACWELYCLEHGIQPDGQMPSDKTIGGGDDSFNTFFSETGAGK
+                  0 |||||||||||||||||||||||||||||||||||||||||||||--|||||||||||||
+query             0 MRECISIHVGQAGVQIGNACWELYCLEHGIQPDGQMPSDKTIGGG--SFNTFFSETGAGK
+
+target           60 HVPRAVFVDLEPTVIDEVRTGTYRQLFHPEQLITGKEDAANNYARGHYTIGKEIIDLVLD
+                 60 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query            58 HVPRAVFVDLEPTVIDEVRTGTYRQLFHPEQLITGKEDAANNYARGHYTIGKEIIDLVLD
+
+target          120 RIRKLADQCTGLQGFSVFHSFGGGTGSGFTSLLMERLSVDYGKKSKLEFSIYPAPQVSTA
+                120 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           118 RIRKLADQCTGLQGFSVFHSFGGGTGSGFTSLLMERLSVDYGKKSKLEFSIYPAPQVSTA
+
+target          180 VVEPYNSILTTHTTLEHSDCAFMVDNEAIYDICRRNLDIERPTYTNLNRLIGQIVSSITA
+                180 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           178 VVEPYNSILTTHTTLEHSDCAFMVDNEAIYDICRRNLDIERPTYTNLNRLIGQIVSSITA
+
+target          240 SLRFDGALNVDLTEFQTNLVPYPRAHFPLATYAPVISAEKAYHEQLSVAEITNACFEPAN
+                240 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           238 SLRFDGALNVDLTEFQTNLVPYPRAHFPLATYAPVISAEKAYHEQLSVAEITNACFEPAN
+
+target          300 QMVKCDPRHGKYMACCLLYRGDVVPKDVNAAIATIKTKRTIQFVDWCPTGFKVGINYEPP
+                300 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           298 QMVKCDPRHGKYMACCLLYRGDVVPKDVNAAIATIKTKRTIQFVDWCPTGFKVGINYEPP
+
+target          360 TVVPGGDLAKVQRAVCMLSNTTAIAEAWARLDHKFDLMYAKRAFVHWYVGEGMEEGEFSE
+                360 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+query           358 TVVPGGDLAKVQRAVCMLSNTTAIAEAWARLDHKFDLMYAKRAFVHWYVGEGMEEGEFSE
+
+target          420 AREDMAALEKDYEEVGV 437
+                420 ||||||||||||||||| 437
+query           418 AREDMAALEKDYEEVGV 435
