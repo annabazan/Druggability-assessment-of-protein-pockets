@@ -1,4 +1,7 @@
-pocket_detection/fpocket/pdb_raw_out
+pocket_detection/fpocket/pdb_out
 pocket_detection/fpocket/alpha_fold_out
-pocket_detection/P2Rank/pdb_raw_out
+pocket_detection/P2Rank/pdb_out
 pocket_detection/P2Rank/alpha_fold_out
+targets/3D_alignment/3D_aligned_alpha_fold
+targets/3D_alignment/3D_alignment_visualisations
+targets/3D_alignment/rmsd_results.csv

@@ -132,3 +132,14 @@ After running the pipeline, **the following directories will be created**:
         - `alignment_results/med_identity/`
         - `alignment_results/high_identity/`
     - summary statistics printed to stdout
+
+    7) `3D_alignment/3D_alignment_superimposer.py`
+
+    A 3d aligning script for **cut AlphaFold structures**.
+
+    **For each AlphaFold model, the script:**
+
+    - generates rotated pdb file in `/3D_aligned_alpha_fold/` using common residues and Superimposer
+    - generates visualisations for the rotated version of the alpha fold structure (orange color) and experimental structure (violet color) in `/3D_alignment_visualisations/`
+
+    This ensures that AlphaFold models position corresponds to their experimental counterpart.

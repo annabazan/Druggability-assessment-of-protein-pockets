@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INPUT_DIR="../../targets/alpha_fold"
+INPUT_DIR="../../targets/3D_alignment/3D_aligned_alpha_fold"
 OUTPUT_DIR="./alpha_fold_out"
 
 mkdir -p "$OUTPUT_DIR"

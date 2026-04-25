@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 from Bio.PDB import PDBParser, PDBIO, Select
+import io as python_io
 
 
 class ProteinSelect(Select):
@@ -34,29 +35,31 @@ def extract_seqres(lines, selected_chain=None):
 def process_pdb(pdb_path, output_path, chain_id):
     parser = PDBParser(QUIET=True)
     structure = parser.get_structure("protein", pdb_path)
-
-    # chain_id = '-' → None (all chains)
     selected_chain = None if chain_id == "-" else chain_id
 
-    # --- ATOM correction ---
-    io = PDBIO()
-    io.set_structure(structure)
-    tmp_atom_file = output_path + ".tmp"
-    io.save(tmp_atom_file, ProteinSelect(selected_chain))
+    # save selected chain to string buffer
+    string_io = python_io.StringIO()
+    io_pdb = PDBIO()
+    io_pdb.set_structure(structure)
+    io_pdb.save(string_io, ProteinSelect(selected_chain))
+    
+    # get ATOM lines from buffer
+    atom_lines = string_io.getvalue().splitlines()
 
-    # --- SEQRES correction ---
+    # extract SEQRES lines from original file
     with open(pdb_path) as f:
         original_lines = f.readlines()
     seqres_lines = extract_seqres(original_lines, selected_chain)
 
-    # --- saving new PDB ---
+    # final file
     with open(output_path, "w") as out:
+        # Zapisujemy SEQRES
         for line in seqres_lines:
-            out.write(line)
-        with open(tmp_atom_file) as tmp:
-            for line in tmp:
-                if line.startswith("ATOM"):
-                    out.write(line)
+            out.write(line.rstrip() + "\n")
+        # Zapisujemy tylko linie ATOM z pamięci
+        for line in atom_lines:
+            if line.startswith("ATOM"):
+                out.write(line + "\n")
         out.write("END\n")
 
 

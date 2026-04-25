@@ -1,7 +1,7 @@
 #!/bin/bash
 
-INPUT_DIR="../../targets/pdb_raw"
-OUTPUT_DIR="./pdb_raw_out"
+INPUT_DIR="../../targets/filtered_pdb"
+OUTPUT_DIR="./pdb_out"
 
 mkdir -p "$OUTPUT_DIR"
 

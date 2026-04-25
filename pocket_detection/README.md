@@ -1,6 +1,6 @@
 # Pocket Detection Instructions
 
-This folder contains scripts and instructions for detecting protein pockets using **Fpocket** and **P2Rank**. We provide scripts to process both **AlphaFold models** and **raw PDB structures**.  
+This folder contains scripts and instructions for detecting protein pockets using **Fpocket** and **P2Rank**. We provide scripts to process both **AlphaFold models** and **PDB structures**.  
 
 ---
 
@@ -15,12 +15,12 @@ sudo make install
 ```
 2. In `pocket_detection/fpocket`:
 ```bash
-chmod +x run_fpocket_raw.sh 
+chmod +x run_fpocket_pdb.sh 
 chmod +x run_fpocket_alpha_fold.sh 
-./run_fpocket_raw.sh
+./run_fpocket_pdb.sh
 ./run_fpocket_alpha_fold.sh
 ```
-3. You should have folders `pdb_raw_out` and `alpha_fold_out` with results.
+3. You should have folders `pdb_out` and `alpha_fold_out` with results.
 ---
 
 ## P2Rank
@@ -41,9 +41,9 @@ source ~/.bashrc
 ```
 3. In `pocket_detection/P2Rank`:
 ```bash
-chmod +x run_P2Rank_raw.sh 
+chmod +x run_P2Rank_pdb.sh 
 chmod +x run_P2Rank_alpha_fold.sh 
-./run_P2Rank_raw.sh
+./run_P2Rank_pdb.sh
 ./run_P2Rank_alpha_fold.sh
 ```
-4. You should have folders `pdb_raw_out` and `alpha_fold_out` with results.
+4. You should have folders `pdb_out` and `alpha_fold_out` with results.
