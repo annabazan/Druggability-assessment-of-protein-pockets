@@ -51,3 +51,46 @@ chmod +x run_P2Rank_alpha_fold.sh
 # Comparison of pockets
 
 Script `comparison.py` generates comparison results for each structure pair and visualisation for every matched pocket pair.
+
+---
+
+## P2Rank rescoring of Fpocket pockets
+
+This step rescoring pockets already detected by **Fpocket** using **P2Rank/PRANK**.  
+It does not detect new pockets. It only assigns a new P2Rank/PRANK score and ranking to existing Fpocket pockets.
+
+1. Make sure that Fpocket has already been run and that the following folders exist:
+
+```text
+pocket_detection/fpocket/pdb_out
+pocket_detection/fpocket/alpha_fold_out
+```
+
+2. In `pocket_detection/rescoring`:
+
+```bash
+bash run_rescoring.sh
+```
+
+3. You should have folders:
+
+```text
+fpocket_pdb_rescored_out
+fpocket_alpha_fold_rescored_out
+```
+
+and dataset files:
+
+```text
+fpocket_pdb_rescore.ds
+fpocket_alpha_fold_rescore.ds
+```
+
+The main output files are:
+
+```text
+<protein>.pdb_rescored.csv
+<protein>.pdb_predictions.csv
+```
+
+The `*_rescored.csv` files contain the original Fpocket pockets with updated P2Rank/PRANK scores and ranks. Compare `old_rank` with `rank` to see how rescoring changed the original Fpocket ranking.
