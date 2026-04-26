@@ -5,3 +5,5 @@ pocket_detection/P2Rank/alpha_fold_out
 targets/3D_alignment/3D_aligned_alpha_fold
 targets/3D_alignment/3D_alignment_visualisations
 targets/3D_alignment/rmsd_results.csv
+pocket_detection/fpocket/comparison_results
+pocket_detection/fpocket/pocket_visualisations

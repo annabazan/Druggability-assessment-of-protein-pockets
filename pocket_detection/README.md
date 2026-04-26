@@ -47,3 +47,7 @@ chmod +x run_P2Rank_alpha_fold.sh
 ./run_P2Rank_alpha_fold.sh
 ```
 4. You should have folders `pdb_out` and `alpha_fold_out` with results.
+
+# Comparison of pockets
+
+Script `comparison.py` generates comparison results for each structure pair and visualisation for every matched pocket pair.
