@@ -1,6 +1,0 @@
-Alignment score: 187.00
-Identity: 1.00
-Coverage: 1.00
-target           15 PENPEIELLRLELAEMKEKYEAIVEENKKLKAKLAQYE 53
-                  0 |||||||||||||||||||||||||||||||||||||| 38
-query             0 PENPEIELLRLELAEMKEKYEAIVEENKKLKAKLAQYE 38

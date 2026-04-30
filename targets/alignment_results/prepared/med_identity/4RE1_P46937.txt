@@ -1,6 +1,0 @@
-Alignment score: 239.00
-Identity: 0.94
-Coverage: 1.00
-target            0 AGHQIVHVRGDSETDLEALFNAVMNPKTANVPQTVPMRLRKLPDSFFKPP 50
-                  0 |||||||||||||||||||||||||||||||||||||.|||||.||.||| 50
-query             0 AGHQIVHVRGDSETDLEALFNAVMNPKTANVPQTVPMCLRKLPASFCKPP 50

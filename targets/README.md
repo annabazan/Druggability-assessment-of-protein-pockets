@@ -7,7 +7,7 @@ The goal is to ensure that both structure sources are **consistent, comparable, 
 **The pipeline includes:**
 - **automated** structure retrieval,
 - structure **cleaning and standardization**,
-- sequence-based **trimming of AlphaFold models**,
+- sequence-based **trimming** and/or **pLDDT filtering** of AlphaFold models,
 - **validation of sequence consistency** between PDB and AlphaFold.
 
 ## How to run
@@ -26,7 +26,7 @@ The full **target preparation pipeline** should be executed from the `targets/` 
 
     Clean PDB files (chain selection, remove non-protein residues): `python clear_pdb.py`
 
-    Trim AlphaFold models to selected sequence ranges: `python cut_af.py`
+    Trim AlphaFold models to selected sequence ranges: `python filter_af.py --mode range`
 
 3. **Validate sequence consistency**
 
@@ -86,21 +86,36 @@ After running the pipeline, **the following directories will be created**:
     
     Cleaned PDB files are saved in `filtered_pdb/` directory.
 
-5) `cut_af.py`
+5) `filter_af.py`
 
-    A preprocessing script for **trimming AlphaFold structures** to specific sequence ranges defined in `targets_list.csv`.
+    A preprocessing script for filtering AlphaFold structures based on:
+
+    - sequence range (`START`–`END`)
+    - per-residue confidence score (pLDDT)
+    - or a combination of both
 
     **For each AlphaFold model, the script:**
 
-    - selects only **residues within the specified sequence range** (`START`–`END`),
-    - removes non-protein residues,
-    - preserves **only standard amino acids** (`ATOM` records)
-    - rebuilds the `SEQRES` section to match the trimmed structure,
-    - outputs a clean and consistent PDB file.
+    - selects residues within a specified sequence range (`range` mode),
+    - computes average pLDDT per residue (from B-factor field),
+    - removes residues below a specified confidence threshold (`plddt` mode),
+    - preserves only standard amino acids (`ATOM` records),
+    - rebuilds the `SEQRES` section to match the filtered structure,
+    - optionally generates PyMOL visualizations comparing full and filtered structures.
 
-    This ensures that AlphaFold models correspond to **the same sequence fragments** as their experimental counterparts.
+    **Filtering modes:**
+    - `range` – sequence-based trimming
+    - `plddt` – confidence-based filtering
+    - `complete` – combined filtering
 
-    Trimmed PDB files are saved in `cut_alpha_fold/` directory.
+    **Output directories:**
+    - `cut_alpha_fold/`
+    - `filtered_alpha_fold/`
+    - `filtered_cut_alpha_fold/`
+
+    **Usage:**
+
+    `python filter_af.py --mode <mode> [--plddt <threshold>] [--visualize]`
 
 6) `sequence_compare.py`
 
