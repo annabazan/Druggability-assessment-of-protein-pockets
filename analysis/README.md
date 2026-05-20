@@ -50,7 +50,7 @@ targets/3D_alignment/3D_aligned_alpha_fold
 From the repository root, run:
 
 ```bash
-python3 analysis/pocket_comparison/run_analysis.py \
+python analysis/pocket_comparison/run_analysis.py \
   --pdb-structures targets/PBD_raw \
   --af-structures targets/3D_alignment/3D_aligned_alpha_fold
 ```
@@ -243,4 +243,10 @@ values for that structure may be missing.
 If `residue_mode_used` is `number`, the script ignored chain identifiers when matching
 residues. This usually means that chain IDs differ between the PDB and AlphaFold files,
 so these cases should be interpreted more carefully.
+
+
+After running `run_analysis.py`, more clear and readable summary tables can be generated with:
+
+```bash
+python analysis/pocket_comparison/make_tables.py
 
