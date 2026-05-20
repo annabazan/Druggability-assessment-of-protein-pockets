@@ -3,8 +3,13 @@ import pandas as pd
 import glob
 import numpy as np
 from Bio.PDB import PDBParser
-import pymol
-from pymol import cmd
+try:
+    import pymol
+    from pymol import cmd
+except ImportError:
+    pymol = None
+    cmd = None
+
 
 def get_pocket_residues(pdb_file):
     """Gets the set of residue numbers that are part of the pocket from a PDB file."""
