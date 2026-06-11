@@ -5,14 +5,6 @@ from Bio.PDB import PDBParser
 from Bio.SeqUtils import seq1
 from Bio.Align import PairwiseAligner, substitution_matrices
 
-sub_count = 0
-identity_results = []
-coverage_results = []
-
-low_results = []
-med_results = []
-high_results = []
-
 def extract_sequence(pdb_path, chain_id=None):
     parser = PDBParser(QUIET=True)
     structure = parser.get_structure("protein", pdb_path)
@@ -61,7 +53,7 @@ def check_alignment(pdb_seq, af_seq):
         "score": best.score,
         "identity": identity,
         "coverage": coverage,
-        "alignment": best
+        "alignment": best,
     }
 
 def save_alignment(pdb_id, af_id, dir_path, score, identity, coverage, alignment):
@@ -71,24 +63,23 @@ def save_alignment(pdb_id, af_id, dir_path, score, identity, coverage, alignment
         f.write(f"Coverage: {coverage:.2f}\n")
         f.write(str(alignment))
 
-def process_alignment(pdb_seq, af_seq):
-    is_substring = 0
-    # Basic compare
-    if is_subsequence(pdb_seq, af_seq):
-        print("PDB sequence is a subsequence of AF sequence.")
-        is_substring = 1
+def process_alignment(pdb_id, af_id, pdb_seq, af_seq, loud=False):
+    is_substring = 1 if is_subsequence(pdb_seq, af_seq) else 0
+    alignment_result = check_alignment(pdb_seq, af_seq)
+    score = alignment_result["score"]
+    identity = alignment_result["identity"]
+    coverage = alignment_result["coverage"]
+    alignment = alignment_result["alignment"]
 
-    # Alignment-based compare
-    align_result = check_alignment(pdb_seq, af_seq)
-    score = align_result['score']
-    identity = align_result['identity']
-    coverage = align_result['coverage']
-    alignment = align_result['alignment']
-    print(f"Alignment score: {score:.2f}")
-    print(f"Identity: {identity:.2f}")
-    print(f"Coverage: {coverage:.2f}")
+    if loud:
+        if is_substring:
+            print("PDB sequence is a subsequence of AF sequence.")
+        print(f"Alignment score: {score:.2f}")
+        print(f"Identity: {identity:.2f}")
+        print(f"Coverage: {coverage:.2f}")
+        if len(pdb_seq) > len(af_seq):
+            print("Warning: PDB sequence is longer than AF sequence.")
 
-    # Saving results
     low_path = "alignment_results/low_identity"
     med_path = "alignment_results/med_identity"
     high_path = "alignment_results/high_identity"
@@ -96,72 +87,102 @@ def process_alignment(pdb_seq, af_seq):
     os.makedirs(med_path, exist_ok=True)
     os.makedirs(high_path, exist_ok=True)
 
-    identity_results.append(identity)
-    coverage_results.append(coverage)
     if identity < 0.8:
-        low_results.append((pdb_id, af_id, identity))
         save_alignment(pdb_id, af_id, low_path, score, identity, coverage, alignment)
-    elif identity < 0.95:
-        med_results.append((pdb_id, af_id, identity))
+        classification = "low"
+    elif identity < 0.9:
         save_alignment(pdb_id, af_id, med_path, score, identity, coverage, alignment)
+        classification = "medium_80_90"
+    elif identity < 0.95:
+        save_alignment(pdb_id, af_id, med_path, score, identity, coverage, alignment)
+        classification = "medium_90_95"
     else:
-        high_results.append((pdb_id, af_id, identity))
         save_alignment(pdb_id, af_id, high_path, score, identity, coverage, alignment)
+        classification = "high"
 
-    return is_substring
+    return {
+        "PDB_ID": pdb_id,
+        "AF_ID": af_id,
+        "pdb_length": len(pdb_seq),
+        "af_length": len(af_seq),
+        "is_subsequence": is_substring,
+        "score": score,
+        "identity": identity,
+        "coverage": coverage,
+        "classification": classification,
+        "full_identity": 1 if identity == 1.0 else 0,
+        "pdb_longer_than_af": 1 if len(pdb_seq) > len(af_seq) else 0,
+    }
 
-parser = argparse.ArgumentParser(description="Compare PDB and AF sequences.")
-parser.add_argument("--pdb_dir", default="pdb", help="Directory with PDB files")
-parser.add_argument("--af_dir", default="alpha_fold", help="Directory with AlphaFold files")
-args = parser.parse_args()
+def main():
+    parser = argparse.ArgumentParser(description="Compare PDB and AF sequences.")
+    parser.add_argument("--pdb_dir", default="pdb", help="Directory with PDB files")
+    parser.add_argument("--af_dir", default="alpha_fold", help="Directory with AlphaFold files")
+    parser.add_argument("--loud", action="store_true", help="Print detailed comparison output for each pair.")
+    args = parser.parse_args()
 
-df = pd.read_csv("targets_list.csv")
+    df = pd.read_csv("targets_list.csv")
+    if not args.loud:
+        print(f"Starting sequence comparison for {len(df)} targets...\n")
 
-for id, row in df.iterrows():
-    pdb_id = row["PDB_ID"]
-    af_id = row["AF_ID"]
-    print(f"\n{id}: {pdb_id} - {af_id}")
+    results = []
+    subseq_count = 0
+    identity_values = []
+    coverage_values = []
 
-    # PDB sequence
-    pdb_file = os.path.join(args.pdb_dir, f"{pdb_id}.pdb")
-    if not os.path.exists(pdb_file):
-        print(f"File {pdb_file} does not exist. Skipping.")
-        continue
-    pdb_seq = extract_sequence(pdb_file)
-    print(f"PDB sequence length: {len(pdb_seq)}")
+    for index, row in df.iterrows():
+        pdb_id = row["PDB_ID"]
+        af_id = row["AF_ID"]
 
-    # AF sequence
-    af_file = os.path.join(args.af_dir, f"{af_id}.pdb")
-    if not os.path.exists(af_file):
-        print(f"File {af_file} does not exist. Skipping.")
-        continue
-    af_seq = extract_sequence(af_file)
-    print(f"AF sequence length: {len(af_seq)}")
+        pdb_file = os.path.join(args.pdb_dir, f"{pdb_id}.pdb")
+        if not os.path.exists(pdb_file):
+            if args.loud:
+                print(f"File {pdb_file} does not exist. Skipping.")
+            continue
 
-    sub_count +=process_alignment(pdb_seq, af_seq)
-    if len(pdb_seq)>len(af_seq):
-        print("Warning: PDB sequence is longer than AF sequence.")
+        af_file = os.path.join(args.af_dir, f"{af_id}.pdb")
+        if not os.path.exists(af_file):
+            if args.loud:
+                print(f"File {af_file} does not exist. Skipping.")
+            continue
 
-print("\n", "*" * 50)
-print(f"Total PDB sequences that are subsequences of AF sequences: {sub_count} out of {len(df)}")
-print(f"Average identity: {sum(identity_results)/len(identity_results):.2f}")
-print(f"Full identities: {len([score for score in identity_results if score == 1.0])}")
-print(f"Average coverage: {sum(coverage_results)/len(coverage_results):.2f}")
+        pdb_seq = extract_sequence(pdb_file)
+        af_seq = extract_sequence(af_file)
 
-print("\n", "*" * 50)
-print(f"Identities under 0.8 (LOW): {len(low_results)}")
-low_results.sort(key=lambda x: x[2])
-for pdb_id, af_id, identity in low_results:
-    print(f"{pdb_id} - {af_id}: {identity:.2f}")
+        if args.loud:
+            print(f"\n{index}: {pdb_id} - {af_id}")
+            print(f"PDB sequence length: {len(pdb_seq)}")
+            print(f"AF sequence length: {len(af_seq)}")
 
-print("\n", "*" * 50)
-print(f"Identities between 0.8 and 0.95 (MEDIUM): {len(med_results)}")
-med_results.sort(key=lambda x: x[2])
-for pdb_id, af_id, identity in med_results:
-    print(f"{pdb_id} - {af_id}: {identity:.2f}")    
+        row_result = process_alignment(pdb_id, af_id, pdb_seq, af_seq, loud=args.loud)
+        results.append(row_result)
+        subseq_count += row_result["is_subsequence"]
+        identity_values.append(row_result["identity"])
+        coverage_values.append(row_result["coverage"])
 
-print("\n", "*" * 50)
-print(f"Identities above 0.95 (HIGH): {len(high_results)}")
-high_results.sort(key=lambda x: x[2])
-for pdb_id, af_id, identity in high_results:
-    print(f"{pdb_id} - {af_id}: {identity:.2f}")
+    results_df = pd.DataFrame(results)
+    results_df.to_csv("sequence_compare_results.csv", index=False)
+
+    count_0_8 = results_df[results_df["identity"] < 0.8].shape[0]
+    count_0_8_0_9 = results_df[(results_df["identity"] >= 0.8) & (results_df["identity"] < 0.9)].shape[0]
+    count_0_9_0_95 = results_df[(results_df["identity"] >= 0.9) & (results_df["identity"] < 0.95)].shape[0]
+    count_0_95_1_0 = results_df[results_df["identity"] >= 0.95].shape[0]
+    full_identities = results_df[results_df["identity"] == 1.0].shape[0]
+
+    print("=" * 40)
+    print("Sequence comparison summary")
+    print(f"Total PDB sequences that are subsequences of AF sequences: {subseq_count} out of {len(results_df)}")
+    print(f"Average identity: {sum(identity_values) / len(identity_values):.2f}" if identity_values else "Average identity: 0.00")
+    print(f"Full identities: {full_identities}")
+    print(f"Average coverage: {sum(coverage_values) / len(coverage_values):.2f}" if coverage_values else "Average coverage: 0.00")
+    print("\nIdentity ranges:")
+    print(f"  0.0 <= identity < 0.8: {count_0_8}")
+    print(f"  0.8 <= identity < 0.9: {count_0_8_0_9}")
+    print(f"  0.9 <= identity < 0.95: {count_0_9_0_95}")
+    print(f"  0.95 <= identity <= 1.0: {count_0_95_1_0}")
+    print("Saved sequence comparison report: sequence_compare_results.csv")
+    print("=" * 40)
+    print()
+
+if __name__ == "__main__":
+    main()

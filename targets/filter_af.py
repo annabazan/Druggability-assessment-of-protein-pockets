@@ -28,7 +28,6 @@ class RangeSelect(Select):
             return False
         return True
     
-
 class PLDDTSelect(Select):
     def __init__(self, scores, threshold):
         self.scores = scores
@@ -42,7 +41,6 @@ class PLDDTSelect(Select):
             return False
         return self.scores[key]>=self.threshold
 
-
 class CompleteSelect(Select):
     def __init__(self, selectors):
         self.selectors = selectors
@@ -53,7 +51,6 @@ class CompleteSelect(Select):
             for sel in self.selectors
             )             
 
-
 def compute_plddt(structure):
     scores = {}
     for model in structure:
@@ -63,7 +60,6 @@ def compute_plddt(structure):
                 if b:
                     scores[(chain.id, residue.id)] = sum(b)/len(b)
     return scores
-
 
 def build_seqres(structure, select):
     seqres = []
@@ -87,7 +83,6 @@ def build_seqres(structure, select):
                 serial += 1
     return seqres
 
-
 def process_structure(structure, output_path, select):
     io = PDBIO()
     io.set_structure(structure)
@@ -107,9 +102,6 @@ def process_structure(structure, output_path, select):
                     out.write(line)
         out.write("END\n")
     os.remove(tmp_atom_file)
-
-# load alpha_fold/O60885.pdb, full
-# load filtered_alpha_fold_70_test/O60885.pdb, filtered
 
 def generate_pymol_script(input_pdb, filtered_pdb, output_png):
     script = f"""
@@ -148,7 +140,6 @@ quit
 """
     return script
 
-
 def run_pymol(input_pdb, filtered_pdb, output_png):
     script_content = generate_pymol_script(input_pdb, filtered_pdb, output_png)
     with open(PYMOL_SCRIPT_PATH, "w") as f:
@@ -156,12 +147,12 @@ def run_pymol(input_pdb, filtered_pdb, output_png):
     subprocess.run(["pymol", "-cq", PYMOL_SCRIPT_PATH])
     os.remove(PYMOL_SCRIPT_PATH)
 
-
 def process_target(target, output_dir, args):
     id = target["AF_ID"]
-    input_pdb = f"{AF_DIR}/{id}.pdb"
+    input_pdb = f"{args.af_dir}/{id}.pdb"
     output_pdb = f"{output_dir}/{id}.pdb"
-    print(f"Processing {id}...")
+    if args.loud:
+        print(f"Processing {id}...")
 
     parser = PDBParser(QUIET=True)
     structure = parser.get_structure("protein", input_pdb)
@@ -174,60 +165,87 @@ def process_target(target, output_dir, args):
     if args.mode in ["plddt", "complete"]:
         scores = compute_plddt(structure)
         selectors.append(PLDDTSelect(scores, args.plddt))
-    if len(selectors)==1:
+    if len(selectors) == 1:
         select = selectors[0]
     else:
         select = CompleteSelect(selectors)
 
     process_structure(structure, output_pdb, select)
     if args.visualize:
-        print(f"Visualizing results for {id}...")
+        if args.loud:
+            print(f"Visualizing results for {id}...")
         output_png = f"{output_dir}/{PYMOL_DIR}/{id}.png"
         run_pymol(input_pdb, output_pdb, output_png)
-        print(f"Visualization saved in {output_png} file.")
-
+        if args.loud:
+            print(f"Visualization saved in {output_png} file.")
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description="Filter AlphaFold PDB files.")
     parser.add_argument(
+        "--targets-file",
+        default=CSV_PATH,
+        help="CSV file containing target metadata for AlphaFold filtering.",
+    )
+    parser.add_argument(
+        "--af-dir",
+        default=AF_DIR,
+        help="Directory containing downloaded AlphaFold PDB files.",
+    )
+    parser.add_argument(
         "--mode",
         choices=["range", "plddt", "complete"],
         default="range",
-        help="Filtering mode"
+        help="Filtering mode",
     )
     parser.add_argument(
         "--plddt",
         type=float,
         default=70.0,
-        help="pLDDT threshold"
+        help="pLDDT threshold",
     )
     parser.add_argument(
         "--visualize",
         action="store_true",
-        help="Enable visualization"
+        help="Enable visualization",
+    )
+    parser.add_argument(
+        "--loud",
+        action="store_true",
+        help="Print detailed progress for each processed AlphaFold model.",
     )
     return parser.parse_args()
 
-
 def main():
     args = parse_arguments()
-    if args.mode=="range":
+    if args.mode == "range":
         output_dir = CUT_DIR
-    elif args.mode=="plddt":
+    elif args.mode == "plddt":
         output_dir = FILTERED_DIR
-    elif args.mode=="complete":
+    else:
         output_dir = COMPLETE_DIR
 
-    targets = pd.read_csv(CSV_PATH)
+    targets = pd.read_csv(args.targets_file)
     os.makedirs(output_dir, exist_ok=True)
 
     if args.visualize:
         pymol_dir = f"{output_dir}/{PYMOL_DIR}"
         os.makedirs(pymol_dir, exist_ok=True)
 
+    if not args.loud:
+        print(f"Filtering {len(targets)} AlphaFold models in {args.mode} mode...\n")
+
+    processed = 0
     for _, target in targets.iterrows():
         process_target(target, output_dir, args)
+        processed += 1
 
+    print("=" * 40)
+    print("AlphaFold filtering summary")
+    print(f"Processed: {processed}")
+    print(f"Mode: {args.mode}")
+    print(f"Saved filtered files in: {output_dir}")
+    print("=" * 40)
+    print()
 
 if __name__ == "__main__":
     main()

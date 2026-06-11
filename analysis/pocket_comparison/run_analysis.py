@@ -7,12 +7,9 @@ from typing import Dict, List, Tuple, Set, Optional, Any
 
 import numpy as np
 import pandas as pd
-
 import scipy
 
-
 ResidueKey = Tuple[str, int, str]
-
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -41,7 +38,7 @@ def parse_args():
     )
     parser.add_argument(
         "--af-structures",
-        default="targets/3D_alignment/3D_aligned_alpha_fold",
+        default="targets/3D_aligned_alpha_fold",
         help="Directory with full AlphaFold structures. pLDDT is read from B-factor field.",
     )
     parser.add_argument(
@@ -646,7 +643,6 @@ def make_protein_summary(pair_df: pd.DataFrame, pdb_id: str, af_id: str, target_
     }
 
     return pd.DataFrame([summary])
-
 
 def process_target_pair(
     row: pd.Series,

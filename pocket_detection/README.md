@@ -1,29 +1,32 @@
 # Pocket Detection Instructions
 
-This folder contains scripts and instructions for detecting protein pockets using **Fpocket** and **P2Rank**. We provide scripts to process both **AlphaFold models** and **PDB structures**.  
+This folder contains scripts and instructions for detecting protein pockets using `fpocket` and `P2Rank`. We provide scripts to process both **AlphaFold models** and **PDB structures**.  
 
 ---
 
-## Fpocket
+## `fpocket`
 
-1. Clone Fpocket (outside of this repo):
+1. In `pocket_detection/fpocket` directory prepare:
+
+    ```bash
+        git clone https://github.com/Discngine/fpocket.git
+        cd fpocket`
+        make
+        sudo make install
+    ```
  
-```bash
-git clone https://github.com/Discngine/fpocket.git .
-cd fpocket
-sudo make install
-```
-2. In `pocket_detection/fpocket`:
-```bash
-chmod +x run_fpocket_pdb.sh 
-chmod +x run_fpocket_alpha_fold.sh 
-./run_fpocket_pdb.sh
-./run_fpocket_alpha_fold.sh
-```
-3. You should have folders `pdb_out` and `alpha_fold_out` with results.
+2. To run detection in `pocket_detection/fpocket` do:
+    ```bash
+    chmod +x run_fpocket_pdb.sh 
+    chmod +x run_fpocket_alpha_fold.sh 
+    ./run_fpocket_pdb.sh
+    ./run_fpocket_alpha_fold.sh
+    ```
+3. You should have folders `pdb_out` and `alpha_fold_out` with pocket detection results.
+
 ---
 
-## P2Rank
+## `P2Rank`
 
 1. Download P2Rank (outside of this repo), you already should have java:
  
