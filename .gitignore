@@ -23,3 +23,5 @@ targets/sequence_compare_results.csv
 
 beta
 targets/beta
+.vscode/
+__pycache__/
