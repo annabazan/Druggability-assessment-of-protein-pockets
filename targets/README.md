@@ -62,14 +62,20 @@ After running the pipeline, **the following directories will be created**:
 
     A curated list of protein targets used in the project, linking experimental structures from the Protein Data Bank (PDB) with corresponding AlphaFold models.
 
-    The file contains **additional metadata** required for consistent preprocessing and comparison between structures:
-    - **PDB structure ID** (`PDB_ID`) – identifier of the experimentally determined structure
-    - **AlphaFold ID** (`AF_ID`) – corresponding UniProt/AlphaFold DB entry
-    - **sequence range** (`START`-`END`) – defines the fragment of the AlphaFold model used in the analysis
-    - **chain** (`CHAIN`) – specifies which chain from the experimental structure is considered
-    - **protein class** (`CLASS`) – short description of the protein family or functional class
+    The file contains **metadata required for consistent preprocessing, filtering, and comparison of protein structures**:
 
-    This table serves as the **central reference for all downstream processing steps**, ensuring that both structure sources (PDB and AlphaFold) are aligned and comparable.
+    * **record identifier** (`NR`) – unique target index used throughout the project
+    * **PDB structure ID** (`PDB_ID`) – identifier of the experimentally determined structure
+    * **AlphaFold ID** (`AF_ID`) – corresponding UniProt/AlphaFold DB entry
+    * **sequence range** (`START`–`END`) – defines the fragment of the AlphaFold model used in the analysis
+    * **chain** (`CHAIN`) – specifies which chain from the experimental structure is considered (`-` indicates that all chains are used)
+    * **protein class** (`CLASS`) – short description of the protein family, function, or structural category
+    * **group label** (`GROUP`) – target classification used in the study:
+        - `1` – likely to contain druggable small-molecule binding pockets
+        - `0` – control group; likely to lack druggable pockets or contain only small and/or poorly accessible pockets
+    * **notes** (`NOTES`) – optional comments describing notable structural features, sequence discrepancies, insertions, or other observations relevant to downstream analysis
+
+    This table serves as the **central reference for all preprocessing, filtering, validation, and comparative analysis steps**, ensuring that experimental PDB structures and AlphaFold models are processed consistently and remain directly comparable throughout the project.
 
     ---
 
