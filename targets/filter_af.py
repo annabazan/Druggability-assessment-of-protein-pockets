@@ -115,7 +115,8 @@ show cartoon, filtered
 spectrum b, blue_cyan_green_yellow_orange_red, minimum=0, maximum=100
 set cartoon_smooth_loops, 1
 set cartoon_fancy_helices, 1
-bg_color white
+bg_color black
+set ray_opaque_background, on
 
 align filtered, full
 
@@ -144,7 +145,11 @@ def run_pymol(input_pdb, filtered_pdb, output_png):
     script_content = generate_pymol_script(input_pdb, filtered_pdb, output_png)
     with open(PYMOL_SCRIPT_PATH, "w") as f:
         f.write(script_content)
-    subprocess.run(["pymol", "-cq", PYMOL_SCRIPT_PATH])
+    subprocess.run(
+        ["pymol", "-cq", PYMOL_SCRIPT_PATH],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
     os.remove(PYMOL_SCRIPT_PATH)
 
 def process_target(target, output_dir, args):

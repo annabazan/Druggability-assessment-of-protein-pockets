@@ -15,9 +15,8 @@ targets/filtered_alpha_fold
 targets/filtered_cut_alpha_fold
 targets/filtered_pdb
 targets/pdb
-targets/3D_alignment/3D_aligned_alpha_fold
-targets/3D_alignment/3D_alignment_visualisations
-targets/3D_alignment/rmsd_results.csv
+
+targets/3D_alignment_visualisations
 targets/3D_aligned_alpha_fold/
 targets/rmsd_results.csv
 targets/sequence_compare_results.csv

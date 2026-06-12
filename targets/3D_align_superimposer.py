@@ -1,4 +1,5 @@
 import argparse
+from tabnanny import verbose
 from Bio.Align import PairwiseAligner, substitution_matrices
 from Bio.PDB import PDBParser, PDBIO, Superimposer
 from Bio.SeqUtils import seq1
@@ -110,7 +111,7 @@ def superimpose_robust(pdb_path, af_path, output_path, direct_numbering=False, v
     
     return si.rms, method, len(ref_list), len(sample_list), len(ref_atoms)
 
-def visualize_alignment(pdb_file, alphafold_file, output_name="comparison.png"):
+def visualize_alignment(pdb_file, alphafold_file, output_name="comparison.png", verbose=False):
     # PyMOL without GUI
     pymol.finish_launching(['pymol', '-cq']) 
 
@@ -132,7 +133,8 @@ def visualize_alignment(pdb_file, alphafold_file, output_name="comparison.png"):
     cmd.set("antialias", 2)
     
     cmd.png(output_name, width=1200, height=800, dpi=300, ray=1)
-    print(f"Saved: {output_name}")
+    if verbose:
+        print(f"Saved: {output_name}")
 
 def run_pipeline(args):
     script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -222,7 +224,7 @@ def run_pipeline(args):
         if rmsd is not None and args.visualize:
             if HAVE_PYMOL:
                 try:
-                    visualize_alignment(pdb_file, out_file, output_name=os.path.join(out_png_dir, f"{pdb_id}_vs_{af_id}.png"))
+                    visualize_alignment(pdb_file, out_file, output_name=os.path.join(out_png_dir, f"{pdb_id}_vs_{af_id}.png"), verbose=args.loud)
                 except Exception as err:
                     print(f"Warning: visualization failed for {pdb_id} vs {af_id}: {err}")
                     print("Continuing without visualization.")
