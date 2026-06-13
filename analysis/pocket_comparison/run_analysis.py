@@ -69,6 +69,22 @@ def parse_args():
             "'auto' tries chain-aware first, then falls back to number-only if all overlaps are zero."
         ),
     )
+    parser.add_argument(
+        "--score-source",
+        choices=["fpocket", "rescored"],
+        default="fpocket",
+        help="Source of score values used in statistics.",
+    )
+    parser.add_argument(
+        "--pdb-rescored",
+        default="pocket_detection/rescoring/fpocket_pdb_rescored_out",
+        help="Directory with P2Rank/PRANK rescored CSV files for PDB fpocket pockets.",
+    )
+    parser.add_argument(
+        "--af-rescored",
+        default="pocket_detection/rescoring/fpocket_alpha_fold_rescored_out",
+        help="Directory with P2Rank/PRANK rescored CSV files for AlphaFold fpocket pockets.",
+    )
 
     return parser.parse_args()
 
@@ -122,6 +138,7 @@ def residue_key_from_pdb_line(line: str, mode: str) -> Optional[ResidueKey]:
         chain = "*"
 
     return chain, resseq, icode
+
 
 
 def read_residues_from_pdb(path: Path, mode: str) -> Set[ResidueKey]:
@@ -349,6 +366,111 @@ def parse_fpocket_descriptors(fpocket_out_dir: Path) -> Dict[int, Dict[str, floa
 
     return descriptors
 
+def find_rescored_csv(rescored_root: Path, structure_id: str) -> Optional[Path]:
+    if not rescored_root.exists():
+        return None
+
+    patterns = [
+        f"{structure_id}.pdb_rescored.csv",
+        f"{structure_id}_rescored.csv",
+        f"*{structure_id}*rescored*.csv",
+    ]
+
+    for pattern in patterns:
+        matches = sorted(rescored_root.rglob(pattern))
+        if matches:
+            return matches[0]
+
+    return None
+
+
+def normalize_csv_columns(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+    df.columns = [
+        re.sub(r"[^a-z0-9]+", "_", str(col).strip().lower()).strip("_")
+        for col in df.columns
+    ]
+    return df
+
+
+def parse_rescored_descriptors(
+    rescored_root: Path,
+    structure_id: str,
+) -> Dict[int, Dict[str, float]]:
+    csv_path = find_rescored_csv(rescored_root, structure_id)
+    if csv_path is None:
+        return {}
+
+    try:
+        df = pd.read_csv(csv_path, comment="#", skipinitialspace=True)
+    except Exception:
+        return {}
+
+    if df.empty:
+        return {}
+
+    df = normalize_csv_columns(df)
+
+    if "old_rank" not in df.columns:
+        return {}
+
+    descriptors: Dict[int, Dict[str, float]] = {}
+
+    for _, row in df.iterrows():
+        if pd.isna(row.get("old_rank")):
+            continue
+
+        try:
+            pocket_num = int(float(row["old_rank"]))
+        except Exception:
+            continue
+
+        values: Dict[str, float] = {}
+
+        for col, value in row.items():
+            if pd.isna(value):
+                continue
+
+            try:
+                numeric_value = float(value)
+            except Exception:
+                continue
+
+            values[f"rescored_{col}"] = numeric_value
+
+            if col == "score":
+                values["pocket_score"] = numeric_value
+
+
+            if col == "probability":
+                values["drug_score"] = numeric_value
+
+            if col in {"rank", "old_rank"}:
+                values[col] = numeric_value
+
+        if values:
+            descriptors[pocket_num] = values
+
+    return descriptors
+
+
+def merge_rescored_descriptors(
+    pockets: List[Dict[str, Any]],
+    rescored_root: Path,
+    structure_id: str,
+    label: str,
+) -> None:
+    rescored = parse_rescored_descriptors(rescored_root, structure_id)
+
+    if not rescored:
+        raise FileNotFoundError(
+            f"No rescored descriptors found for {label} {structure_id} in {rescored_root}"
+        )
+
+    for pocket in pockets:
+        pocket_num = pocket["pocket_num"]
+        if pocket_num in rescored:
+            pocket["descriptors"].update(rescored[pocket_num])
 
 def load_pockets(fpocket_out_dir: Path, mode: str) -> List[Dict[str, Any]]:
     pocket_dir = fpocket_out_dir / "pockets"
@@ -695,6 +817,20 @@ def process_target_pair(
             break
 
     residue_mode_used, pdb_pockets, af_pockets, similarity = selected
+
+    if args.score_source == "rescored":
+        merge_rescored_descriptors(
+            pdb_pockets,
+            Path(args.pdb_rescored),
+            pdb_id,
+            "PDB",
+        )
+        merge_rescored_descriptors(
+            af_pockets,
+            Path(args.af_rescored),
+            af_id,
+            "AF",
+        )
 
     pdb_coords, _ = read_ca_coordinates_and_bfactors(pdb_structure, residue_mode_used)
     af_coords, af_bfactors = read_ca_coordinates_and_bfactors(af_structure, residue_mode_used)
