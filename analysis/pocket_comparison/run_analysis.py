@@ -436,21 +436,15 @@ def parse_rescored_descriptors(
             except Exception:
                 continue
 
-            # Zachowujemy wszystkie wartości z rescoringu pod osobnymi nazwami.
             values[f"rescored_{col}"] = numeric_value
 
-            # Minimalne aliasy kompatybilne z obecną logiką statystyk.
-            # Dzięki temu istniejące kolumny *_fpocket_pocket_score
-            # będą zawierały score z rescoringu, gdy --score-source rescored.
             if col == "score":
                 values["pocket_score"] = numeric_value
 
-            # Jeżeli P2Rank/PRANK zwraca probability, używamy jej jako
-            # drugiego score'u kompatybilnego z dotychczasowym drug_score.
+
             if col == "probability":
                 values["drug_score"] = numeric_value
 
-            # Zachowujemy też ranking.
             if col in {"rank", "old_rank"}:
                 values[col] = numeric_value
 
