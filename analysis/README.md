@@ -119,7 +119,7 @@ The script writes results to:
 analysis/pocket_comparison/outputs
 ```
 
-Local outputs are created separately for every PDB–AlphaFold pair:
+Local outputs are created separately for every PDB–AlphaFold pair (one for every protein):
 
 ```text
 analysis/pocket_comparison/outputs/local/<PDB_ID>_vs_<AF_ID>/

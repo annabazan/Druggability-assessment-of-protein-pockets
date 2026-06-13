@@ -74,7 +74,16 @@ def run_all(visualize=False, loud=False, skip_fpocket=False, skip_analysis=False
         print("\n[8/8] Running fpocket on aligned AlphaFold structures...")
         run_cmd(["bash", "run_fpocket_alpha_fold.sh"], cwd=os.path.join(repo_root, "pocket_detection/fpocket"), loud=loud)
 
-    # 6) Analysis
+    # 6) Optional rescoring
+    if score_source == "rescored":
+        print("\n[rescoring] Running P2Rank/PRANK rescoring of fpocket pockets...")
+        run_cmd(
+            ["bash", "run_rescoring.sh"],
+            cwd=os.path.join(repo_root, "pocket_detection", "rescoring"),
+            loud=loud,
+        )
+
+    # 7) Analysis
     if not skip_analysis:
         print("\n[final] Running analysis (run_analysis.py)...")
 
