@@ -79,8 +79,8 @@ done
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 
-PDB_INPUT="$REPO_ROOT/targets/pdb"
-AF_INPUT="$REPO_ROOT/targets/alpha_fold"
+PDB_INPUT="$REPO_ROOT/targets/filtered_pdb"
+AF_INPUT="$REPO_ROOT/targets/3D_aligned_alpha_fold"
 
 FPOCKET_DIR="$REPO_ROOT/pocket_detection/fpocket"
 RESCORING_DIR="$REPO_ROOT/pocket_detection/rescoring"

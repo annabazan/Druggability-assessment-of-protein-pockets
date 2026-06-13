@@ -19,7 +19,7 @@ def run_cmd(cmd, cwd=None, loud=False):
         raise RuntimeError(f"Command failed (rc={res.returncode}): {' '.join(cmd)}")
     return res.returncode
 
-def run_all(visualize=False, loud=False, skip_fpocket=False, skip_analysis=False):
+def run_all(visualize=False, loud=False, skip_fpocket=False, skip_analysis=False, score_source="fpocket"):
     repo_root = os.path.dirname(os.path.abspath(__file__))
 
     # 1) Download structures
@@ -77,16 +77,30 @@ def run_all(visualize=False, loud=False, skip_fpocket=False, skip_analysis=False
     # 6) Analysis
     if not skip_analysis:
         print("\n[final] Running analysis (run_analysis.py)...")
-        analysis_cmd = [sys.executable, os.path.join("analysis", "pocket_comparison", "run_analysis.py"),
-                        "--targets", os.path.join("targets", "targets_list.csv"),
-                        "--pdb-fpocket", os.path.join("pocket_detection", "fpocket", "pdb_out"),
-                        "--af-fpocket", os.path.join("pocket_detection", "fpocket", "alpha_fold_out"),
-                        "--pdb-structures", os.path.join("targets", "filtered_pdb"),
-                        "--af-structures", os.path.join("targets", "3D_aligned_alpha_fold"),
-                        "--out", os.path.join("analysis", "pocket_comparison", "outputs")]
-        run_cmd(analysis_cmd, cwd=repo_root, loud=loud)
 
-    print("Pipeline finished successfully.")
+        analysis_cmd = [
+            sys.executable,
+            os.path.join("analysis", "pocket_comparison", "run_analysis.py"),
+            "--targets", os.path.join("targets", "targets_list.csv"),
+            "--pdb-fpocket", os.path.join("pocket_detection", "fpocket", "pdb_out"),
+            "--af-fpocket", os.path.join("pocket_detection", "fpocket", "alpha_fold_out"),
+            "--pdb-structures", os.path.join("targets", "filtered_pdb"),
+            "--af-structures", os.path.join("targets", "3D_aligned_alpha_fold"),
+            "--score-source", score_source,
+            "--out", os.path.join("analysis", "pocket_comparison", f"outputs_{score_source}"),
+        ]
+
+        if score_source == "rescored":
+            analysis_cmd += [
+                "--pdb-rescored", os.path.join(
+                    "pocket_detection", "rescoring", "fpocket_pdb_rescored_out"
+                ),
+                "--af-rescored", os.path.join(
+                    "pocket_detection", "rescoring", "fpocket_alpha_fold_rescored_out"
+                ),
+            ]
+
+        run_cmd(analysis_cmd, cwd=repo_root, loud=loud)
 
 
 def parse_arguments():
@@ -95,12 +109,13 @@ def parse_arguments():
     parser.add_argument("--loud", action="store_true", help="Print verbose progress for each step.")
     parser.add_argument("--skip-fpocket", action="store_true", help="Skip fpocket runs.")
     parser.add_argument("--skip-analysis", action="store_true", help="Skip final analysis step.")
+    parser.add_argument("--score-source", choices=["fpocket", "rescored"], default="fpocket", help="Use original fpocket scores or already prepared P2Rank/PRANK-rescored scores.",)
     return parser.parse_args()
 
 
 def main():
     args = parse_arguments()
-    run_all(visualize=args.visualize, loud=args.loud, skip_fpocket=args.skip_fpocket, skip_analysis=args.skip_analysis)
+    run_all(visualize=args.visualize, loud=args.loud, skip_fpocket=args.skip_fpocket, skip_analysis=args.skip_analysis, score_source=args.score_source)
 
 
 if __name__ == "__main__":
