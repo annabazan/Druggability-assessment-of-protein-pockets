@@ -1,6 +1,498 @@
 import pandas as pd
 from pathlib import Path
 import py3Dmol
+from scipy.stats import pearsonr
+import matplotlib.pyplot as plt
+plt.rcParams["font.family"] = "Times New Roman"
+
+# analysis utils
+
+def prepare_pockets_df(df):
+    rows = []
+    for _, row in df.iterrows():
+        status = row["pair_status"]
+        # PDB pockets
+        if status in ["matched", "weak_match", "pdb_only"]:
+            rows.append({
+                "Origin": "PDB",
+                "ID": row["pdb_id"],
+                "Pocket ID": int(row["pdb_pocket_num"]),
+                "Status": status,
+                "Match": (
+                    int(row["af_pocket_num"])
+                    if status in ["matched", "weak_match"]
+                    else "-"
+                ),
+                "Jaccard": (
+                    row["jaccard"] 
+                    if status in ["matched", "weak_match"]
+                    else "-"                
+                ),
+                "Res": row["pdb_residue_count"],
+                "Mean pLDDT": 0,
+                "Median pLDDT": 0,
+                "Score": row["pdb_fpocket_pocket_score"],
+                "Drug": row["pdb_fpocket_drug_score"],
+                "Vol": row["pdb_fpocket_volume"],
+                "Hydro": row["pdb_fpocket_hydrophobicity_score"],
+                "Polar": row["pdb_fpocket_polarity_score"],
+                "Charge": row["pdb_fpocket_charge_score"],
+                "Flex": row["pdb_fpocket_flexibility"],
+            })
+        # AF pockets
+        if status in ["matched", "weak_match", "af_only"]:
+            rows.append({
+                "Origin": "AF",
+                "ID": row["af_id"],
+                "Pocket ID": int(row["af_pocket_num"]),
+                "Status": status,
+                "Match": (
+                    int(row["pdb_pocket_num"])
+                    if status in ["matched", "weak_match"]
+                    else "-"
+                ),
+                "Jaccard": (
+                    row["jaccard"] 
+                    if status in ["matched", "weak_match"]
+                    else "-"                
+                ),
+                "Res": row["af_residue_count"],
+                "Mean pLDDT": row["af_pocket_mean_plddt"],
+                "Median pLDDT": row["af_pocket_median_plddt"],
+                "Score": row["af_fpocket_pocket_score"],
+                "Drug": row["af_fpocket_drug_score"],
+                "Vol": row["af_fpocket_volume"],
+                "Hydro": row["af_fpocket_hydrophobicity_score"],
+                "Polar": row["af_fpocket_polarity_score"],
+                "Charge": row["af_fpocket_charge_score"],
+                "Flex": row["af_fpocket_flexibility"],
+            })
+
+    pockets_df = pd.DataFrame(rows)
+
+    pockets_pdb = (
+        pockets_df[pockets_df["Origin"] == "PDB"]
+        .drop(columns="Origin")
+        .reset_index(drop=True)
+    ).copy()
+    pockets_af = (
+        pockets_df[pockets_df["Origin"] == "AF"]
+        .drop(columns="Origin")
+        .reset_index(drop=True)
+    ).copy()
+
+    return pockets_df, pockets_pdb, pockets_af
+
+def viz_status(pockets_pdb, pockets_af):
+    status_order = ["matched", "weak_match", "pdb_only", "af_only"]
+    label_map = {
+        "matched": "Matched",
+        "weak_match": "Weak match",
+        "pdb_only": "PDB only",
+        "af_only": "AF only"
+    }
+
+    pdb_counts = (
+        pockets_pdb["Status"]
+        .value_counts()
+        .reindex(status_order, fill_value=0)
+    )
+    af_counts = (
+        pockets_af["Status"]
+        .value_counts()
+        .reindex(status_order, fill_value=0)
+    )
+    pdb_counts = pdb_counts[pdb_counts > 0]
+    af_counts = af_counts[af_counts > 0]    
+
+    _, axes = plt.subplots(1, 2, figsize=(8, 4))
+
+    axes[0].pie(
+        pdb_counts,
+        labels=[label_map[status] for status in pdb_counts.index],
+        autopct="%1.1f%%",
+        startangle=90,
+        colors=["tab:blue", "tab:green", "tab:red"]
+    )
+    axes[1].pie(
+        af_counts,
+        labels=[label_map[status] for status in af_counts.index],
+        autopct="%1.1f%%",
+        startangle=90,
+        colors=["tab:blue", "tab:green", "tab:orange"]
+    )
+
+    axes[0].set_title("PDB pockets")
+    axes[1].set_title("AF pockets")
+    plt.tight_layout()
+    plt.show()
+
+def show_score_stats(pockets_pdb, pockets_af):
+    score_stats = pd.concat(
+        [
+            pockets_pdb[["Score", "Drug"]]
+            .agg(["mean", "median", "std", "min", "max"])
+            .T
+            .assign(Origin="PDB"),
+
+            pockets_af[["Score", "Drug"]]
+            .agg(["mean", "median", "std", "min", "max"])
+            .T
+            .assign(Origin="AF"),
+        ]
+    )
+
+    score_stats = (
+        score_stats
+        .reset_index(names="Metric")
+        .loc[:, ["Metric", "Origin", "mean", "median", "max", "min", "std"]]
+    )
+    score_stats["Metric"] = pd.Categorical(
+        score_stats["Metric"],
+        categories=["Score", "Drug"],
+        ordered=True
+    )
+    score_stats["Origin"] = pd.Categorical(
+        score_stats["Origin"],
+        categories=["PDB", "AF"],
+        ordered=True
+    )
+    score_stats = (
+        score_stats
+        .sort_values(["Metric", "Origin"])
+        .reset_index(drop=True)
+    )
+
+    numeric_cols = ["mean", "median", "max", "min", "std"]
+    score_stats[numeric_cols] = score_stats[numeric_cols].round(3)
+
+    return score_stats
+
+def score_filter(pockets_df, min_score=0.1, min_drug=0.3):
+    return pockets_df[
+        (pockets_df["Score"] >= min_score)
+        & (pockets_df["Drug"] >= min_drug)
+    ].copy()
+
+def show_score_quantiles(pockets_pdb, pockets_af, quantiles=None):
+    if quantiles is None:
+        quantiles = [0.25, 0.5, 0.75, 0.8, 0.9, 0.95]
+
+    score_quantiles = pd.concat(
+        {
+            "Score PDB": pockets_pdb["Score"].quantile(quantiles),
+            "Score AF": pockets_af["Score"].quantile(quantiles),
+            "Drug PDB": pockets_pdb["Drug"].quantile(quantiles),
+            "Drug AF": pockets_af["Drug"].quantile(quantiles),
+        },
+        axis=1
+    ).round(2)
+
+    score_quantiles["Count PDB"] = [
+        (
+            (pockets_pdb["Score"] >= pockets_pdb["Score"].quantile(q))
+            &
+            (pockets_pdb["Drug"] >= pockets_pdb["Drug"].quantile(q))
+        ).sum()
+        for q in quantiles
+    ]
+    score_quantiles["Count AF"] = [
+        (
+            (pockets_af["Score"] >= pockets_af["Score"].quantile(q))
+            &
+            (pockets_af["Drug"] >= pockets_af["Drug"].quantile(q))
+        ).sum()
+        for q in quantiles
+    ]
+
+    return score_quantiles
+
+def plot_distribution(pockets_pdb, pockets_af, bins=60, metric="Score"):
+    _, ax = plt.subplots(figsize=(6, 4)) 
+
+    ax.hist(
+        pockets_pdb[metric],
+        bins=bins,
+        alpha=0.6,
+        label="PDB",
+        density=False
+    )
+    ax.hist(
+        pockets_af[metric],
+        bins=bins,
+        alpha=0.6,
+        label="AF",
+        density=False
+    )
+
+    pdb_max = pockets_pdb[metric].max()
+    af_max = pockets_af[metric].max()
+    ax.axvline(
+        pdb_max,
+        color="tab:blue",
+        linestyle="--",
+        linewidth=1.5,
+        label=f"PDB max ({pdb_max:.2f})"
+    )
+    ax.axvline(
+        af_max,
+        color="tab:orange",
+        linestyle="--",
+        linewidth=1.5,
+        label=f"AF max ({af_max:.2f})"
+    )
+
+    ax.set_xlabel(f"{metric}")
+    ax.set_ylabel("Density")
+    ax.set_title(f"Distribution of {metric}")
+    ax.legend()
+
+    plt.tight_layout()
+    plt.show()
+
+def analyse_matches_pdb(filtered_pdb, filtered_af, pdb_to_af, jaccard_threshold = 0.5):
+    pdb_status = (
+        filtered_pdb["Status"]
+        .value_counts()
+        .reindex(["matched", "weak_match", "pdb_only"], fill_value=0)
+    )
+    pdb_status = pdb_status[pdb_status > 0]
+
+    unique_stuctures = (
+        filtered_pdb
+        .groupby("Status")["ID"]
+        .nunique()
+    )
+
+    print(f"Among {len(filtered_pdb)} PDB pockets after filtering there are:")
+    for status, count in pdb_status.items():
+        print(f"    {count} pockets with status '{status} in {unique_stuctures[status]} protein structures'")
+
+    filtered_pdb["Jaccard"] = pd.to_numeric(
+        filtered_pdb["Jaccard"],
+        errors="coerce"
+    )
+
+    af_keys = set(
+        zip(filtered_af["ID"], filtered_af["Pocket ID"])
+    )
+
+    pdb_matched = filtered_pdb[
+        filtered_pdb["Status"].isin(["matched", "weak_match"])
+        & (filtered_pdb["Jaccard"] >= jaccard_threshold)
+    ].copy()
+
+    pdb_matched["Partner retained"] = pdb_matched.apply(
+        lambda r: (
+            (pdb_to_af.get(r["ID"]), r["Match"])
+            in af_keys
+        ),
+        axis=1
+    )
+
+    print(f"Number of PDB pockets with Jaccard >= {jaccard_threshold} and retained partner: {pdb_matched['Partner retained'].sum()}")
+
+    return pdb_status, pdb_matched
+
+def analyse_matches_af(filtered_pdb, filtered_af, af_to_pdb, jaccard_threshold = 0.5):
+    af_status = (
+        filtered_af["Status"]
+        .value_counts()
+        .reindex(["matched", "weak_match", "af_only"], fill_value=0)
+    )
+    af_status = af_status[af_status > 0]
+
+    unique_models = (
+        filtered_af
+        .groupby("Status")["ID"]
+        .nunique()
+    )
+
+    print(f"Among {len(filtered_af)} AlphaFold pockets after filtering there are:")
+    for status, count in af_status.items():
+        print(f"    {count} pockets with status '{status} in {unique_models[status]} protein models'")
+
+    filtered_af["Jaccard"] = pd.to_numeric(
+        filtered_af["Jaccard"],
+        errors="coerce"
+    )
+
+    pdb_keys = set(
+        zip(filtered_pdb["ID"], filtered_pdb["Pocket ID"])
+    )
+
+    af_matched = filtered_af[
+        filtered_af["Status"].isin(["matched", "weak_match"])
+        & (filtered_af["Jaccard"] >= jaccard_threshold)
+    ].copy()
+
+    af_matched["Partner retained"] = af_matched.apply(
+        lambda r: (
+            (af_to_pdb.get(r["ID"]), r["Match"])
+            in pdb_keys
+        ),
+        axis=1
+    )
+
+    print(f"Number of AlphaFold pockets with Jaccard >= {jaccard_threshold} and retained partner: {af_matched['Partner retained'].sum()}")
+    
+    return af_status, af_matched
+
+def identify_retained_pairs(retained_df, filtered_pdb, af_to_pdb):
+    pdb_lookup = filtered_pdb.set_index(["ID", "Pocket ID"])
+
+    rows = []
+
+    for _, row in retained_df.iterrows():
+
+        pdb_id = af_to_pdb[row["ID"]]
+        pdb_pocket_id = int(row["Match"])
+
+        try:
+            pdb_row = pdb_lookup.loc[(pdb_id, pdb_pocket_id)]
+        except KeyError:
+            continue
+
+        rows.append({
+            "PDB ID": pdb_id,
+            "AF ID": row["ID"],
+            "PDB pocket ID": pdb_pocket_id,
+            "AF pocket ID": int(row["Pocket ID"]),
+            "Jaccard": row["Jaccard"],
+            "Res": int(row["Res"]),
+            "Mean pLDDT": row["Mean pLDDT"],
+            "Score PDB": pdb_row["Score"],
+            "Score AF": row["Score"],
+            "Drug PDB": pdb_row["Drug"],
+            "Drug AF": row["Drug"],
+        })
+
+    return pd.DataFrame(rows)
+
+def analyze_origin(pockets_df, targets_df, mode="PDB"):
+    if mode == "PDB":
+        group_map = dict(
+            zip(targets_df["PDB_ID"], targets_df["GROUP"])
+        )
+    else:
+        group_map = dict(
+            zip(targets_df["AF_ID"], targets_df["GROUP"])
+        )        
+    pockets_df["Group"] = pockets_df["ID"].map(group_map)
+
+    drug_perc = pockets_df["Group"].sum() / len(pockets_df) * 100
+    return drug_perc
+
+def stats_corr(df, targets_df, stats="pocket"):
+    matched_df = df[
+        df["pair_status"].isin(["matched", "weak_match"])
+    ].copy()
+    group_map = dict(
+        zip(targets_df["PDB_ID"], targets_df["GROUP"])
+    )
+    matched_df["Group"] = matched_df["pdb_id"].map(group_map)
+
+    r, _ = pearsonr(
+        matched_df[f"pdb_fpocket_{stats}_score"],
+        matched_df[f"af_fpocket_{stats}_score"]
+    )
+
+    group1 = matched_df[matched_df["Group"] == 1]
+    group0 = matched_df[matched_df["Group"] == 0]
+
+    fig, ax = plt.subplots(figsize=(6, 6))
+
+    ax.scatter(
+        group1[f"pdb_fpocket_{stats}_score"],
+        group1[f"af_fpocket_{stats}_score"],
+        color="green",
+        label="Group 1",
+        alpha=0.7
+    )
+
+    ax.scatter(
+        group0[f"pdb_fpocket_{stats}_score"],
+        group0[f"af_fpocket_{stats}_score"],
+        color="orange",
+        label="Group 0",
+        alpha=0.7
+    )
+
+    ax.text(
+        0.05,
+        0.95,
+        f"Pearson r = {r:.3f}",
+        transform=ax.transAxes,
+        va="top",
+        bbox=dict(boxstyle="round", alpha=0.3)
+    )
+
+    ax.legend()
+    ax.set_xlabel(f"PDB {stats} score")
+    ax.set_ylabel(f"AlphaFold {stats} score")
+    ax.set_title(f"PDB vs AlphaFold {stats} scores")
+
+    plt.tight_layout()
+    plt.show()
+
+    return r
+
+def plddt_impact(pockets_af):
+    plddt_stats = (
+        pockets_af["Mean pLDDT"]
+        .agg(["mean", "median", "max", "min", "std", "count"])
+        .round(2)
+    )
+    plddt_stats = pd.DataFrame(
+        [plddt_stats],
+        index=["all"]
+    )
+
+    plddt_by_status = (
+        pockets_af
+        .groupby("Status")["Mean pLDDT"]
+        .agg(["mean", "median", "max", "min", "std", "count"])
+        .round(2)
+    )
+    plddt_by_status = pd.concat(
+        [plddt_stats, plddt_by_status]
+    )
+    plddt_by_status["count"] = plddt_by_status["count"].astype(int)
+    plddt_by_status = plddt_by_status.reindex(
+        ["all", "matched", "weak_match", "af_only"]
+    )
+
+    # correlations
+    matched_af = pockets_af[
+        pockets_af["Status"].isin(["matched", "weak_match"])
+    ].copy()
+    
+    r_score, _ = pearsonr(
+        pockets_af["Mean pLDDT"],
+        pockets_af["Score"]
+    )
+    r_drug, _ = pearsonr(
+        pockets_af["Mean pLDDT"],
+        pockets_af["Drug"]
+    )
+    r_jaccard, _ = pearsonr(
+        matched_af["Mean pLDDT"],
+        matched_af["Jaccard"]
+    )
+
+    r_dict = {
+        "score" : r_score,
+        "drug" : r_drug,
+        "jaccard" : r_jaccard
+    }
+
+    print(f"Pearson correlation (pLDDT vs Score): {r_score:.3f}")
+    print(f"Pearson correlation (pLDDT vs Drug): {r_drug:.3f}")
+    print(f"Pearson correlation (pLDDT vs Jaccard) for matched and weak matched pairs: {r_jaccard:.3f}")
+
+    return plddt_by_status, r_dict
+
+# visualization utils
 
 def get_pocket_files(pockets_dir):
     pockets_dir = Path(pockets_dir)
