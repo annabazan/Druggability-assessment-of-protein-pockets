@@ -1,4 +1,5 @@
 analysis/pocket_comparison/outputs/
+analysis/pocket_comparison/outputs_fpocket/
 
 pocket_detection/fpocket/fpocket/
 pocket_detection/fpocket/pdb_out

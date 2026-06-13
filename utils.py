@@ -3,7 +3,6 @@ from pathlib import Path
 import py3Dmol
 from scipy.stats import pearsonr
 import matplotlib.pyplot as plt
-plt.rcParams["font.family"] = "Times New Roman"
 
 # analysis utils
 
@@ -466,6 +465,14 @@ def plddt_impact(pockets_af):
     matched_af = pockets_af[
         pockets_af["Status"].isin(["matched", "weak_match"])
     ].copy()
+    matched_af["Jaccard"] = pd.to_numeric(
+        matched_af["Jaccard"],
+        errors="coerce"
+    )
+    matched_af["Mean pLDDT"] = pd.to_numeric(
+        matched_af["Mean pLDDT"],
+        errors="coerce"
+    )
     
     r_score, _ = pearsonr(
         pockets_af["Mean pLDDT"],
@@ -794,7 +801,7 @@ def filter_pockets_by_jaccard(pockets_df, jaccard_threshold=0.75):
     return filtered_df, pdb_pockets, af_pockets
 
 def best_matched(PDB_id, AF_id, jaccard_threshold=0.75):
-    ANALYSIS_DIR = Path("analysis/pocket_comparison/outputs/local")/f"{PDB_id}_vs_{AF_id}"
+    ANALYSIS_DIR = Path("analysis/pocket_comparison/outputs_fpocket/local")/f"{PDB_id}_vs_{AF_id}"
     pockets_info = ANALYSIS_DIR/"pocket_pairs_detailed.csv"
     df = pd.read_csv(pockets_info)
 
@@ -851,7 +858,7 @@ def best_matched(PDB_id, AF_id, jaccard_threshold=0.75):
     return report_df, pdb_pockets, af_pockets
 
 def prepare_df(PDB_id, AF_id):
-    ANALYSIS_DIR = Path("analysis/pocket_comparison/outputs/local")/f"{PDB_id}_vs_{AF_id}"
+    ANALYSIS_DIR = Path("analysis/pocket_comparison/outputs_fpocket/local")/f"{PDB_id}_vs_{AF_id}"
     pockets_info = ANALYSIS_DIR/"pocket_pairs_detailed.csv"
     df = pd.read_csv(pockets_info)
 
