@@ -18,7 +18,7 @@ set -euo pipefail
 THREADS=8
 VISUALIZATIONS=0
 AF_CONFIG="rescore_2024"
-PRANK_BIN="${PRANK_BIN:-$HOME/tools/p2rank_2.5.1/prank}"
+PRANK_BIN="${PRANK_BIN:-$(which prank)}"
 
 usage() {
     cat <<EOF_USAGE

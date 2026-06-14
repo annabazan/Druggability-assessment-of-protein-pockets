@@ -1,13 +1,18 @@
 analysis/pocket_comparison/outputs/
 analysis/pocket_comparison/outputs_fpocket/
+analysis/pocket_comparison/outputs_rescored/
 
 pocket_detection/fpocket/fpocket/
 pocket_detection/fpocket/pdb_out
 pocket_detection/fpocket/alpha_fold_out
-pocket_detection/P2Rank/pdb_out
-pocket_detection/P2Rank/alpha_fold_out
 pocket_detection/fpocket/comparison_results
 pocket_detection/fpocket/pocket_visualisations
+pocket_detection/P2Rank/pdb_out
+pocket_detection/P2Rank/alpha_fold_out
+pocket_detection/rescoring/fpocket_alpha_fold_rescore.ds
+pocket_detection/rescoring/fpocket_alpha_fold_rescored_out/
+pocket_detection/rescoring/fpocket_pdb_rescore.ds
+pocket_detection/rescoring/fpocket_pdb_rescored_out/
 
 targets/alignment_results
 targets/alpha_fold
@@ -26,3 +31,6 @@ beta
 targets/beta
 .vscode/
 __pycache__/
+
+analysis-fpocket.ipynb
+analysis-rescored.ipynb
