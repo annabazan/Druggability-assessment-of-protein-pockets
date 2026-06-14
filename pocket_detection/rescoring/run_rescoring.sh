@@ -268,10 +268,6 @@ main() {
     echo "  $AF_RESCORE_OUT"
     echo
 
-    echo "=== CSV files ==="
-    find "$RESCORING_DIR" -name "*.csv" | head -40
-    echo
-
     echo "Rescoring pipeline completed."
 }
 
