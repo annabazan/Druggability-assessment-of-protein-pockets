@@ -167,6 +167,47 @@ def show_score_stats(pockets_pdb, pockets_af):
 
     return score_stats
 
+def show_characteristics_stats(pockets_pdb, pockets_af):
+    score_stats = pd.concat(
+        [
+            pockets_pdb[["Vol", "Hydro", "Polar", "Charge", "Flex"]]
+            .agg(["mean", "median", "std", "min", "max"])
+            .T
+            .assign(Origin="PDB"),
+
+            pockets_af[["Vol", "Hydro", "Polar", "Charge"]]
+            .agg(["mean", "median", "std", "min", "max"])
+            .T
+            .assign(Origin="AF"),
+        ]
+    )
+
+    score_stats = (
+        score_stats
+        .reset_index(names="Metric")
+        .loc[:, ["Metric", "Origin", "mean", "median", "max", "min", "std"]]
+    )
+    score_stats["Metric"] = pd.Categorical(
+        score_stats["Metric"],
+        categories=["Vol", "Hydro", "Polar", "Charge", "Flex"],
+        ordered=True
+    )
+    score_stats["Origin"] = pd.Categorical(
+        score_stats["Origin"],
+        categories=["PDB", "AF"],
+        ordered=True
+    )
+    score_stats = (
+        score_stats
+        .sort_values(["Metric", "Origin"])
+        .reset_index(drop=True)
+    )
+
+    numeric_cols = ["mean", "median", "max", "min", "std"]
+    score_stats[numeric_cols] = score_stats[numeric_cols].round(1)
+
+    return score_stats
+
 def score_filter(pockets_df, min_score=0.1, min_drug=0.3):
     return pockets_df[
         (pockets_df["Score"] >= min_score)
@@ -499,7 +540,123 @@ def plddt_impact(pockets_af):
 
     return plddt_by_status, r_dict
 
+def characteristics_corr(pockets_df, score = "Score"):
+    characters = ["Vol", "Hydro", "Polar", "Charge"]
+    corrs = {}
+
+    for character in characters:
+        r, _ = pearsonr(
+            pockets_df[score],
+            pockets_df[character]
+        )
+        corrs[character] = r
+
+    # flex corr only considering PDB pockets
+    pockets_flex = (
+        pockets_df[pockets_df["Origin"] == "PDB"]
+        .drop(columns="Origin")
+        .reset_index(drop=True)
+    ).copy()
+
+    r_flex, _ = pearsonr(
+        pockets_flex[score],
+        pockets_flex["Flex"]
+    )
+    corrs["Flex"] = r_flex
+
+    return corrs
+
+def characteristics_summary(df):
+    matched_df = df[
+        df["pair_status"].isin(["matched", "weak_match"])
+    ].copy()
+
+    stats = ["volume", 
+            "hydrophobicity_score",
+            "polarity_score",
+            "charge_score"]
+
+    summary = []
+    n = len(matched_df)
+
+    for stat in stats:
+        pdb_col = f"pdb_fpocket_{stat}"
+        af_col = f"af_fpocket_{stat}"
+        diff_col = f"delta_fpocket_{stat}"
+
+        summary.append({
+            "Descriptor": stat,
+            "Mean PDB": matched_df[pdb_col].mean(),
+            "Mean AF": matched_df[af_col].mean(),
+            "Mean diff" : matched_df[diff_col].mean(),
+            "% PDB > AF": 100 * (matched_df[pdb_col] > matched_df[af_col]).mean(),
+            "% PDB = AF": 100 * (matched_df[pdb_col] == matched_df[af_col]).mean(),
+            "% PDB < AF": 100 * (matched_df[pdb_col] < matched_df[af_col]).mean(),
+        })
+
+    summary_df = pd.DataFrame(summary).round(2)
+    return summary_df
+
 # visualization utils
+
+def print_target_summary(pdb_id, af_id):
+    TARGET_LIST_PATH = "targets/targets_list.csv"
+    SEQ_RESULTS_PATH = "targets/sequence_compare_results.csv"
+    RMSD_RESUTLS_PATH =  "targets/rmsd_results.csv"
+
+    targets_df = pd.read_csv(TARGET_LIST_PATH)
+    seq_results = pd.read_csv(SEQ_RESULTS_PATH)
+    rmsd_results = pd.read_csv(RMSD_RESUTLS_PATH)
+
+    # validate mapping
+    target_row = targets_df[
+        (targets_df["PDB_ID"] == pdb_id)
+        & (targets_df["AF_ID"] == af_id)
+    ]
+    if target_row.empty:
+        print(
+            f"WARNING: {pdb_id} and {af_id} "
+            "do not form a valid PDB–AF pair."
+        )
+        return
+    target_row = target_row.iloc[0]
+
+    # metadata
+    protein_class = target_row["CLASS"]
+    group = (
+        "likely druggable"
+        if target_row["GROUP"] == 1
+        else "likely NON-druggable"
+    )
+    notes = target_row["NOTES"]
+
+    # sequence alignment
+    seq_row = seq_results[
+        (seq_results["PDB_ID"] == pdb_id)
+        & (seq_results["AF_ID"] == af_id)
+    ].iloc[0]
+
+    # structural alignment
+    rmsd_row = rmsd_results[
+        (rmsd_results["PDB_ID"] == pdb_id)
+        & (rmsd_results["AF_ID"] == af_id)
+    ].iloc[0]
+
+    # output
+    print("PROTEIN INFORMATION")
+    print(f"  Class : {protein_class}")
+    print(f"  Group : {group}")
+    print(f"  Notes : {notes}")
+
+    print("\nSequence alignment summary")
+    print(f"  PDB sequence length : {seq_row['pdb_length']}")
+    print(f"  AF sequence length  : {seq_row['af_length']}")
+    print(f"  Identity            : {seq_row['identity']:.2f}%")
+    print(f"  Coverage            : {seq_row['coverage']:.2f}%")
+
+    print("\n3D alignment summary")
+    print(f"  Matched Cα atoms : {rmsd_row['matched_ca_count']}")
+    print(f"  RMSD             : {rmsd_row['RMSD']:.3f} Å")
 
 def get_pocket_files(pockets_dir):
     pockets_dir = Path(pockets_dir)
@@ -550,6 +707,140 @@ def get_pdb_files(
         },
     }
     return files    
+
+def show_alignment(structure_pdb, structure_af, width=500, height=400, opacity=0.5):
+    view = py3Dmol.view(
+        width=width,
+        height=height
+    )
+
+    with open(structure_pdb) as f:
+        view.addModel(f.read(), "pdb")
+    with open(structure_af) as f:
+        view.addModel(f.read(), "pdb")
+
+    view.setStyle(
+        {"model": 0},
+        {"cartoon": {"color": "violet"}}
+    )
+    view.addSurface(
+        py3Dmol.MS,
+        {
+            "color": "violet",
+            "opacity": opacity
+        },
+        {"model": 0}
+    )
+    view.setStyle(
+        {"model": 1},
+        {"cartoon": {"color": "orange"}}
+    )
+    view.addSurface(
+        py3Dmol.MS,
+        {
+            "color": "orange",
+            "opacity": opacity
+        },
+        {"model": 1}
+    )
+
+    view.setBackgroundColor("black")
+    view.zoomTo()
+    view.show()
+
+def show_pocket_alignment(structure_pdb, structure_af,
+                          pocket_files_pdb, pocket_files_af,
+                          pdb_pocket, af_pocket,
+                          width=500, height=400):
+
+    view = py3Dmol.view(
+        width=width,
+        height=height
+    )
+
+    # show proteins
+    with open(structure_pdb) as f:
+        view.addModel(f.read(), "pdb")  # model 0
+    with open(structure_af) as f:
+        view.addModel(f.read(), "pdb")  # model 1
+
+    view.setStyle(
+        {"model": 0},
+        {"cartoon": 
+            {
+            "color": "violet",
+            "opacity": 0.5
+            }
+        }
+    )
+    view.setStyle(
+        {"model": 1},
+        {"cartoon": 
+            {
+            "color": "orange",
+            "opacity": 0.5
+            }
+        }
+    )
+
+    # show PDB pocket
+    pocket_vert_pdb = pocket_files_pdb[pdb_pocket]["vert"]
+    pocket_atm_pdb = pocket_files_pdb[pdb_pocket]["atm"]
+
+    with open(pocket_vert_pdb) as f:    
+        view.addModel(f.read(), "pqr")  # model 2
+
+    view.setStyle(
+        {"model": 2},
+        {"sphere": {"radius": 1.0, "color": "violet"}},
+    )
+    view.addSurface(
+        py3Dmol.VDW,
+        {
+            "color": "violet",
+            "opacity": 0.8
+        },
+        {"model": 2}
+    )
+
+    # show AF pocket
+    pocket_vert_af = pocket_files_af[af_pocket]["vert"]
+    pocket_atm_af = pocket_files_af[af_pocket]["atm"]
+
+    with open(pocket_vert_af) as f:
+        view.addModel(f.read(), "pqr")  # model 3
+
+    view.setStyle(
+        {"model": 3},
+        {"sphere": {"radius": 1.0, "color": "orange"}},
+    )
+    view.addSurface(
+        py3Dmol.VDW,
+        {
+            "color": "orange",
+            "opacity": 0.8
+        },
+        {"model": 3}
+    )
+
+    # sticks
+    with open(pocket_atm_pdb) as f:
+        view.addModel(f.read(), "pdb")  # model 4
+    with open(pocket_atm_af) as f:
+        view.addModel(f.read(), "pdb")  # model 5
+
+    view.setStyle(
+        {"model": 4},
+        {"stick": {"color": "violet"}}
+    )
+    view.setStyle(
+        {"model": 5},
+        {"stick": {"color": "orange"}}
+    )
+
+    view.setBackgroundColor("black")
+    view.zoomTo({"model": 3})
+    return view
 
 def add_pocket(
     view, viewer,
