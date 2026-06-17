@@ -1092,6 +1092,7 @@ def filter_pockets_by_jaccard(pockets_df, jaccard_threshold=0.75):
     return filtered_df, pdb_pockets, af_pockets
 
 def best_matched(PDB_id, AF_id, jaccard_threshold=0.75):
+    # ANALYSIS_DIR = Path("analysis/pocket_comparison/outputs/local")/f"{PDB_id}_vs_{AF_id}"
     ANALYSIS_DIR = Path("analysis/pocket_comparison/outputs_fpocket/local")/f"{PDB_id}_vs_{AF_id}"
     pockets_info = ANALYSIS_DIR/"pocket_pairs_detailed.csv"
     df = pd.read_csv(pockets_info)
@@ -1149,6 +1150,7 @@ def best_matched(PDB_id, AF_id, jaccard_threshold=0.75):
     return report_df, pdb_pockets, af_pockets
 
 def prepare_df(PDB_id, AF_id):
+    ANALYSIS_DIR = Path("analysis/pocket_comparison/outputs/local")/f"{PDB_id}_vs_{AF_id}"
     ANALYSIS_DIR = Path("analysis/pocket_comparison/outputs_fpocket/local")/f"{PDB_id}_vs_{AF_id}"
     pockets_info = ANALYSIS_DIR/"pocket_pairs_detailed.csv"
     df = pd.read_csv(pockets_info)

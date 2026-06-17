@@ -9,6 +9,10 @@ import numpy as np
 import pandas as pd
 import scipy
 
+from Bio.PDB import PDBParser
+from Bio.Data.IUPACData import protein_letters_3to1
+from Bio.Align import PairwiseAligner
+
 ResidueKey = Tuple[str, int, str]
 
 def parse_args():
@@ -140,6 +144,106 @@ def residue_key_from_pdb_line(line: str, mode: str) -> Optional[ResidueKey]:
     return chain, resseq, icode
 
 
+def extract_sequence_and_residue_keys(pdb_file):
+    parser = PDBParser(QUIET=True)
+    structure = parser.get_structure("protein", pdb_file)
+
+    sequence = []
+    residue_keys = []
+
+    seen = set()
+
+    for model in structure:
+        for chain in model:
+            for residue in chain:
+
+                if residue.id[0] != " ":
+                    continue
+
+                resname = residue.resname.upper()
+
+                try:
+                    aa = protein_letters_3to1[resname.capitalize()]
+                except KeyError:
+                    continue
+
+                key = (
+                    chain.id,
+                    residue.id[1],
+                    residue.id[2].strip()
+                )
+
+                if key in seen:
+                    continue
+
+                seen.add(key)
+
+                sequence.append(aa)
+                residue_keys.append(key)
+
+    return "".join(sequence), residue_keys
+
+
+def build_residue_mapping(
+    pdb_keys,
+    af_keys,
+    alignment
+):
+
+    mapping = {}
+
+    for pdb_block, af_block in zip(
+        alignment.aligned[0],
+        alignment.aligned[1]
+    ):
+
+        pdb_start, pdb_end = pdb_block
+        af_start, af_end = af_block
+
+        block_len = min(
+            pdb_end - pdb_start,
+            af_end - af_start
+        )
+
+        for i in range(block_len):
+
+            mapping[
+                pdb_keys[pdb_start + i]
+            ] = af_keys[af_start + i]
+
+    return mapping
+
+
+def create_residue_mapping(
+    pdb_structure_file,
+    af_structure_file
+):
+
+    pdb_seq, pdb_keys = \
+        extract_sequence_and_residue_keys(
+            pdb_structure_file
+        )
+
+    af_seq, af_keys = \
+        extract_sequence_and_residue_keys(
+            af_structure_file
+        )
+
+    aligner = PairwiseAligner()
+
+    alignment = aligner.align(
+        pdb_seq,
+        af_seq
+    )[0]
+
+    mapping = build_residue_mapping(
+        pdb_keys,
+        af_keys,
+        alignment
+    )
+
+    return mapping
+
 
 def read_residues_from_pdb(path: Path, mode: str) -> Set[ResidueKey]:
     residues: Set[ResidueKey] = set()
@@ -265,6 +369,7 @@ def calculate_rmsd_local_aligned(
 
     return rmsd_between_arrays(x, y_aligned)
 
+
 def plddt_summary(
     af_bfactors: Dict[ResidueKey, float],
     residues: Set[ResidueKey],
@@ -365,6 +470,7 @@ def parse_fpocket_descriptors(fpocket_out_dir: Path) -> Dict[int, Dict[str, floa
                         descriptors[pocket_num][key_norm] = value_num
 
     return descriptors
+
 
 def find_rescored_csv(rescored_root: Path, structure_id: str) -> Optional[Path]:
     if not rescored_root.exists():
@@ -472,6 +578,7 @@ def merge_rescored_descriptors(
         if pocket_num in rescored:
             pocket["descriptors"].update(rescored[pocket_num])
 
+
 def load_pockets(fpocket_out_dir: Path, mode: str) -> List[Dict[str, Any]]:
     pocket_dir = fpocket_out_dir / "pockets"
     descriptors = parse_fpocket_descriptors(fpocket_out_dir)
@@ -503,13 +610,22 @@ def load_pockets(fpocket_out_dir: Path, mode: str) -> List[Dict[str, Any]]:
 def build_similarity_matrix(
     pdb_pockets: List[Dict[str, Any]],
     af_pockets: List[Dict[str, Any]],
+    residue_mapping
 ) -> np.ndarray:
     sim = np.zeros((len(pdb_pockets), len(af_pockets)), dtype=float)
 
     for i, p in enumerate(pdb_pockets):
         for j, a in enumerate(af_pockets):
-            sim[i, j] = calculate_jaccard(p["residues"], a["residues"])
+            mapped_pdb = {
+                residue_mapping[r]
+                for r in p["residues"]
+                if r in residue_mapping
+            }
 
+            sim[i, j] = calculate_jaccard(
+                mapped_pdb,
+                a["residues"]
+            )
     return sim
 
 
@@ -585,6 +701,7 @@ def make_pair_rows(
     match_threshold: float,
     weak_threshold: float,
     residue_mode_used: str,
+    residue_mapping
 ) -> pd.DataFrame:
     raw_matches = assign_unique_matches(similarity)
 
@@ -606,7 +723,13 @@ def make_pair_rows(
     for i, j, score, status in accepted_matches:
         p = pdb_pockets[i]
         a = af_pockets[j]
-        common = p["residues"] & a["residues"]
+        mapped_pdb = {
+            residue_mapping[r]
+            for r in p["residues"]
+            if r in residue_mapping
+        }
+
+        common = mapped_pdb & a["residues"]
 
         row: Dict[str, Any] = {
             "target_id": target_id,
@@ -766,6 +889,7 @@ def make_protein_summary(pair_df: pd.DataFrame, pdb_id: str, af_id: str, target_
 
     return pd.DataFrame([summary])
 
+
 def process_target_pair(
     row: pd.Series,
     args,
@@ -804,7 +928,8 @@ def process_target_pair(
     for mode in modes_to_try:
         pdb_pockets = load_pockets(pdb_fpocket_dir, mode)
         af_pockets = load_pockets(af_fpocket_dir, mode)
-        similarity = build_similarity_matrix(pdb_pockets, af_pockets)
+        residue_mapping = create_residue_mapping(pdb_structure, af_structure)
+        similarity = build_similarity_matrix(pdb_pockets, af_pockets, residue_mapping)
 
         max_similarity = float(np.max(similarity)) if similarity.size else 0.0
 
@@ -848,6 +973,7 @@ def process_target_pair(
         match_threshold=args.match_threshold,
         weak_threshold=args.weak_threshold,
         residue_mode_used=residue_mode_used,
+        residue_mapping=residue_mapping
     )
 
     pair_df.to_csv(local_out / "pocket_pairs_detailed.csv", index=False)
